@@ -1,8 +1,8 @@
-# 🚀 Enterprise AI Chatbot Platform
+# 🚀 Enterprise AI Chatbot
 
 <div align="center">
   <img alt="Enterprise-ready AI chatbot with admin controls and token management" src="app/(chat)/demo-image.png" width="600">
-  <h2>Enterprise-Ready AI Chatbot Platform</h2>
+  <h2>Enterprise-Ready AI Chatbot</h2>
   <p><strong>Built by Penguin International • Tailored for Organizations</strong></p>
 </div>
 
@@ -98,8 +98,8 @@ This platform can be deployed on various infrastructures:
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/Pengdhruv/ai-chatbot.git
-cd ai-chatbot
+git clone https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit.git
+cd ai-chatbot-entrpise-kit
 pnpm install
 ```
 
