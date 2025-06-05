@@ -1,9 +1,9 @@
-# 🚀 Enterprise AI Chatbot Platform
+# 🚀 Enterprise AI Chatbot
 
 <div align="center">
   <img alt="Enterprise-ready AI chatbot with admin controls and token management" src="app/(chat)/demo-image.png" width="600">
-  <h2>Enterprise-Ready AI Chatbot Platform</h2>
-  <p><strong>Curated by Penguin International • Tailored for Organizations</strong></p>
+  <h2>Enterprise-Ready AI Chatbot</h2>
+  <p><strong>Built by Penguin International • Tailored for Organizations</strong></p>
 </div>
 
 <p align="center">
@@ -45,19 +45,29 @@ It is the perfect solution for teams aiming to scale AI adoption with governance
 ## Key Features
 
 ### Admin Dashboard
+
 - User and role management
 - Token budget controls
 - Real-time usage dashboards
+- Permission management
 
 ### Token Management
-- Assign per-user
+
+- Assign per-user or global budgets
 - Monitor consumption in real-time
+- Generate cost breakdown reports
 - Handle budget requests seamlessly
+- Receive usage notifications
 
 ### Security & Compliance
+
 - Role-based access controls
+- Full audit logging
+- Secure login with optional SSO
+- Data retention configurations
 
 ### LLM Provider Support
+
 - Extendable to any LLM provider via Vercel AI SDK package
 
 ---
@@ -88,8 +98,8 @@ This platform can be deployed on various infrastructures:
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/Pengdhruv/ai-chatbot.git
-cd ai-chatbot
+git clone https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit.git
+cd ai-chatbot-entrpise-kit
 pnpm install
 ```
 
@@ -247,7 +257,7 @@ We encourage contributions to improve this platform:
 
 This project is licensed under the **MIT License** by Penguin International, Gurugram, India. See [LICENSE](LICENSE) for details.
 
-Special thanks to team _Vercel_ for their AI SDK tool kit.
+Special thanks to team _Vercel_ for their Amazing tool and AI SDK kit.
 
 ---
 
