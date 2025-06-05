@@ -8,8 +8,7 @@
       "lib/editor/react-renderer.tsx",
       "node_modules",
       ".next",
-      "public",
-      ".vercel"
+      "public"
     ]
   },
   "vcs": {
@@ -76,7 +75,7 @@
         "noUselessElse": "off" // Stylistic opinion
       },
       "suspicious": {
-        "noExplicitAny": "off" // We trust Vercelians to use any only when necessary
+        "noExplicitAny": "off"
       },
       "nursery": {
         "noStaticElementInteractions": "warn",
