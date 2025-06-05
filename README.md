@@ -249,9 +249,9 @@ We encourage contributions to improve this platform:
 
 ## 📜 License
 
-This project is licensed under the **MIT License** by Penguin International, Gurugram, India. See [LICENSE](LICENSE) for details.
+This project is licensed under the **Apache License** by Penguin International, Gurugram, India. See [LICENSE](LICENSE) for details.
 
-Special thanks to team _Vercel_ for their AI SDK tool kit.
+Built upon the powerful [Vercel AI SDK](https://sdk.vercel.ai) — thanks to the Vercel team for the inspiration and solid foundation.
 
 ---
 
