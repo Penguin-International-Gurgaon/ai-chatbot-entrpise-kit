@@ -12,37 +12,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <a href="index.html" class="logo">
-                <i data-lucide="bot" class="logo-icon"></i>
-                Enterprise AI Chatbot
-            </a>
-            
-            <nav class="nav" id="nav-menu">
-                <a href="index.html">
-                    <i data-lucide="home"></i>
-                    Home
-                </a>
-                <a href="docs/getting-started.html">
-                    <i data-lucide="book-open"></i>
-                    Documentation
-                </a>
-                <a href="enterprise.html" class="active">
-                    <i data-lucide="building-2"></i>
-                    Enterprise
-                </a>
-                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="github-link" target="_blank">
-                    <i data-lucide="github"></i>
-                    GitHub
-                </a>
-            </nav>
-            
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <i data-lucide="menu"></i>
-            </button>
-        </div>
-    </header>
 
     <main class="main-content">
         <div class="content-wrapper">
@@ -220,12 +189,6 @@
             </div>
         </div>
     </main>
-
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
-        </div>
-    </footer>
 
     <style>
     .enterprise-features {
