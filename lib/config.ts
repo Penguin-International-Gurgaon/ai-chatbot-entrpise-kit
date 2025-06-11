@@ -19,6 +19,12 @@ export interface AppConfig{
     };
 
     header:Record<string, string>;
+    footer: {
+        enabled: boolean;
+        text: string;
+        privacy_policy: string;
+        usage_policy: string;
+    };
     suggested_actions: {
         title:string;
         label:string;

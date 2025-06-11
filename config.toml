@@ -14,6 +14,23 @@ DARK_THEME_COLOR = "hsl(240deg 10% 3.92%)"
 favicon_text = "🐧"
 custom_header_note = "LLM for Everyone"
 
+[footer]
+enabled = true
+text = "Built by PenguinOne"
+privacy_policy = """
+This LLM-based chat application is provided by **Penguin International** for the sole use of employees to support daily work tasks, idea generation, communication assistance, and productivity enhancement.
+
+To ensure responsible usage and maintain operational integrity, the platform is monitored. Monitoring may include system-level logs, usage patterns, and anonymized metadata.
+"""
+usage_policy = """
+**General LLM Usage Guidelines:**
+- LLMs can occasionally be wrong — always verify outputs
+- Use critical thinking before acting on any result
+- Never share sensitive, confidential, or personal data
+
+**Ethical Use:** Avoid generating content that is inappropriate, offensive, misleading, discriminatory, or in violation of company code of conduct.
+"""
+
 [[suggested_actions]]
 title = "What are the advantages"
 label = "of using Next.js?"
