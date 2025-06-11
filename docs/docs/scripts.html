@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripts & Tools - Enterprise AI Chatbot Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i data-lucide="bot" class="logo-icon"></i>
+                Enterprise AI Chatbot
+            </a>
+            
+            <nav class="nav" id="nav-menu">
+                <a href="../index.html">
+                    <i data-lucide="home"></i>
+                    Home
+                </a>
+                <a href="getting-started.html" class="active">
+                    <i data-lucide="book-open"></i>
+                    Documentation
+                </a>
+                <a href="../enterprise.html">
+                    <i data-lucide="building-2"></i>
+                    Enterprise
+                </a>
+                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="github-link" target="_blank">
+                    <i data-lucide="github"></i>
+                    GitHub
+                </a>
+            </nav>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="docs-layout">
+                <aside class="docs-sidebar">
+                    <nav class="docs-nav">
+                        <a href="getting-started.html">
+                            <i data-lucide="rocket"></i>
+                            Getting Started
+                        </a>
+                        <a href="docker.html">
+                            <i data-lucide="container"></i>
+                            Docker Deployment
+                        </a>
+                        <a href="providers.html">
+                            <i data-lucide="plug"></i>
+                            AI Providers
+                        </a>
+                        <a href="customization.html">
+                            <i data-lucide="palette"></i>
+                            Customization
+                        </a>
+                        <a href="scripts.html" class="active">
+                            <i data-lucide="terminal"></i>
+                            Scripts & Tools
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="docs-content">
+                    <h1>Scripts & Tools</h1>
+                    <p class="lead">Automation scripts and tools to help you manage, deploy, and maintain your Enterprise AI Chatbot Platform.</p>
+
+                    <div class="info-box">
+                        <i data-lucide="info"></i>
+                        <div>
+                            <strong>Script Location:</strong> All scripts are located in the <code>scripts/</code> directory and are designed to work across different environments.
+                        </div>
+                    </div>
+
+                    <h2>Development Scripts</h2>
+
+                    <div class="script-grid">
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="play"></i> start-dev.sh</h3>
+                                <span class="script-type">Development</span>
+                            </div>
+                            <p>Starts the development environment with hot reload and debugging enabled.</p>
+                            <pre><code># Usage
+./scripts/start-dev.sh
+
+# What it does
+- Builds development Docker image
+- Starts PostgreSQL database
+- Enables hot reload
+- Mounts source code volumes
+- Sets up development environment variables</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="database"></i> setup-db.sh</h3>
+                                <span class="script-type">Database</span>
+                            </div>
+                            <p>Initializes the database with required tables and seed data.</p>
+                            <pre><code># Usage
+./scripts/setup-db.sh
+
+# Options
+./scripts/setup-db.sh --reset    # Reset database
+./scripts/setup-db.sh --seed     # Add sample data
+
+# What it does
+- Creates database if not exists
+- Runs migrations
+- Sets up initial admin user
+- Optionally adds seed data</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="user-plus"></i> create-admin.sh</h3>
+                                <span class="script-type">User Management</span>
+                            </div>
+                            <p>Creates a new admin user with full platform access.</p>
+                            <pre><code># Usage
+./scripts/create-admin.sh admin@company.com
+
+# Interactive mode
+./scripts/create-admin.sh
+
+# What it does
+- Prompts for email if not provided
+- Creates admin user in database
+- Sets appropriate permissions
+- Generates initial token budget</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Production Scripts</h2>
+
+                    <div class="script-grid">
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="rocket"></i> start-prod.sh</h3>
+                                <span class="script-type">Production</span>
+                            </div>
+                            <p>Starts the production environment with optimized settings.</p>
+                            <pre><code># Usage
+./scripts/start-prod.sh
+
+# What it does
+- Builds optimized production image
+- Starts all production services
+- Configures Nginx reverse proxy
+- Sets up SSL/TLS (if configured)
+- Enables health checks and monitoring</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="shield"></i> backup-db.sh</h3>
+                                <span class="script-type">Backup</span>
+                            </div>
+                            <p>Creates automated database backups with compression and rotation.</p>
+                            <pre><code># Usage
+./scripts/backup-db.sh
+
+# Scheduled backup (add to crontab)
+0 2 * * * /path/to/scripts/backup-db.sh
+
+# What it does
+- Creates timestamped database dump
+- Compresses backup file
+- Stores in ./backups/ directory
+- Rotates old backups (keeps last 7 days)
+- Logs backup status</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="refresh-cw"></i> update-app.sh</h3>
+                                <span class="script-type">Maintenance</span>
+                            </div>
+                            <p>Updates the application with zero-downtime deployment.</p>
+                            <pre><code># Usage
+./scripts/update-app.sh
+
+# With specific version
+./scripts/update-app.sh v2.1.0
+
+# What it does
+- Pulls latest code from repository
+- Builds new Docker image
+- Performs rolling update
+- Runs database migrations
+- Verifies health checks</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Utility Scripts</h2>
+
+                    <div class="script-grid">
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="activity"></i> health-check.sh</h3>
+                                <span class="script-type">Monitoring</span>
+                            </div>
+                            <p>Comprehensive health check for all services and dependencies.</p>
+                            <pre><code># Usage
+./scripts/health-check.sh
+
+# Detailed output
+./scripts/health-check.sh --verbose
+
+# What it checks
+- Application health endpoint
+- Database connectivity
+- Redis connection (if enabled)
+- Disk space usage
+- Memory usage
+- API provider connectivity</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="trash-2"></i> cleanup.sh</h3>
+                                <span class="script-type">Maintenance</span>
+                            </div>
+                            <p>Cleans up old Docker images, logs, and temporary files.</p>
+                            <pre><code># Usage
+./scripts/cleanup.sh
+
+# Aggressive cleanup
+./scripts/cleanup.sh --force
+
+# What it does
+- Removes unused Docker images
+- Cleans old log files
+- Removes temporary files
+- Prunes Docker system
+- Frees up disk space</code></pre>
+                        </div>
+
+                        <div class="script-card">
+                            <div class="script-header">
+                                <h3><i data-lucide="download"></i> restore-db.sh</h3>
+                                <span class="script-type">Recovery</span>
+                            </div>
+                            <p>Restores database from backup file with safety checks.</p>
+                            <pre><code># Usage
+./scripts/restore-db.sh backup-2024-01-01.sql
+
+# Interactive mode with backup selection
+./scripts/restore-db.sh
+
+# What it does
+- Lists available backups
+- Validates backup file
+- Creates safety backup before restore
+- Restores database from backup
+- Verifies restoration success</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Configuration Scripts</h2>
+
+                    <h3><span class="step-number">1</span> Environment Setup</h3>
+                    <pre><code># setup-env.sh - Interactive environment configuration
+./scripts/setup-env.sh
+
+# Prompts for:
+- Database credentials
+- AI provider API keys
+- Admin email
+- Domain configuration
+- SSL certificate paths</code></pre>
+
+                    <h3><span class="step-number">2</span> SSL Configuration</h3>
+                    <pre><code># setup-ssl.sh - SSL certificate configuration
+./scripts/setup-ssl.sh your-domain.com
+
+# Options:
+--letsencrypt    # Use Let's Encrypt
+--self-signed    # Generate self-signed certificate
+--custom         # Use custom certificate files</code></pre>
+
+                    <h3><span class="step-number">3</span> Provider Testing</h3>
+                    <pre><code># test-providers.sh - Test AI provider connections
+./scripts/test-providers.sh
+
+# Test specific provider
+./scripts/test-providers.sh openai
+./scripts/test-providers.sh anthropic
+
+# What it tests:
+- API key validity
+- Rate limits
+- Model availability
+- Response time</code></pre>
+
+                    <h2>Monitoring & Logging</h2>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="file-text"></i>
+                            </div>
+                            <h3>Log Management</h3>
+                            <pre><code># View application logs
+./scripts/logs.sh app
+
+# View database logs
+./scripts/logs.sh db
+
+# Follow logs in real-time
+./scripts/logs.sh --follow
+
+# Export logs for analysis
+./scripts/logs.sh --export</code></pre>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="bar-chart"></i>
+                            </div>
+                            <h3>Usage Analytics</h3>
+                            <pre><code># Generate usage report
+./scripts/usage-report.sh
+
+# Monthly report
+./scripts/usage-report.sh --month
+
+# Export to CSV
+./scripts/usage-report.sh --csv
+
+# Email report
+./scripts/usage-report.sh --email admin@company.com</code></pre>
+                        </div>
+                    </div>
+
+                    <h2>Automation Examples</h2>
+
+                    <h3>Cron Job Setup</h3>
+                    <pre><code># Add to crontab for automated tasks
+crontab -e
+
+# Daily backup at 2 AM
+0 2 * * * /path/to/scripts/backup-db.sh
+
+# Weekly cleanup on Sunday at 3 AM
+0 3 * * 0 /path/to/scripts/cleanup.sh
+
+# Hourly health check
+0 * * * * /path/to/scripts/health-check.sh --quiet
+
+# Daily usage report
+0 9 * * * /path/to/scripts/usage-report.sh --email admin@company.com</code></pre>
+
+                    <h3>CI/CD Integration</h3>
+                    <pre><code># GitHub Actions example
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        run: |
+          ssh user@server 'cd /app && ./scripts/update-app.sh'
+          ssh user@server './scripts/health-check.sh'</code></pre>
+
+                    <h2>Script Customization</h2>
+
+                    <div class="info-box">
+                        <i data-lucide="settings"></i>
+                        <div>
+                            <strong>Configuration:</strong> Most scripts can be customized by editing the configuration section at the top of each file. Common settings include backup retention, log levels, and notification endpoints.
+                        </div>
+                    </div>
+
+                    <h3>Custom Script Template</h3>
+                    <pre><code>#!/bin/bash
+# Custom script template
+
+# Configuration
+SCRIPT_NAME="custom-script"
+LOG_FILE="/var/log/${SCRIPT_NAME}.log"
+CONFIG_FILE="./config/script.conf"
+
+# Functions
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+check_dependencies() {
+    # Check required tools and services
+    command -v docker >/dev/null 2>&1 || { log "Docker is required"; exit 1; }
+}
+
+main() {
+    log "Starting $SCRIPT_NAME"
+    check_dependencies
+    
+    # Your script logic here
+    
+    log "$SCRIPT_NAME completed successfully"
+}
+
+# Run main function
+main "$@"</code></pre>
+
+                    <div class="warning-box">
+                        <i data-lucide="alert-triangle"></i>
+                        <div>
+                            <strong>Important:</strong> Always test scripts in a development environment before using in production. Make sure to review and understand what each script does before execution.
+                        </div>
+                    </div>
+
+                    <div class="success-box">
+                        <i data-lucide="check-circle"></i>
+                        <div>
+                            <strong>Scripts Ready!</strong> You now have a comprehensive set of tools to manage your Enterprise AI Chatbot Platform efficiently.
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <a href="customization.html" class="nav-button">
+                            <i data-lucide="arrow-left"></i>
+                            Customization
+                        </a>
+                        <a href="../enterprise.html" class="nav-button">
+                            Enterprise
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/docs.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

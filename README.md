@@ -1,21 +1,20 @@
-# 🚀 Enterprise AI Chatbot
+# Enterprise AI Chatbot Platform
 
 <div align="center">
   <img alt="Enterprise-ready AI chatbot with admin controls and token management" src="app/(chat)/demo-image.png" width="600">
-  <h2>Enterprise-Ready AI Chatbot Platform</h2>
-  <p><strong>Curated by Penguin International • Tailored for Organizations</strong></p>
+  <h2>🚀 Centralized AI Access for Enterprise</h2>
+  <p><strong>Built by Penguin International • Designed for Organizations</strong></p>
 </div>
 
 <p align="center">
-  A robust, enterprise-grade AI chatbot platform built with Next.js, Vercel AI SDK kit. Featuring comprehensive admin controls, token budgeting, user management, access control, and usage analytics — designed specifically for teams and organizations.
+  Give your entire organization access to advanced AI models while maintaining complete cost control and administrative oversight. Built with Next.js, featuring comprehensive token budgeting, user management, and enterprise-grade security.
 </p>
 
 <p align="center">
-  <a href="#-key-features"><strong>Features</strong></a> ·
-  <a href="#-admin-dashboard"><strong>Admin Dashboard</strong></a> ·
-  <a href="#-deployment"><strong>Deploy</strong></a> ·
-  <a href="#-quick-start"><strong>Quick Start</strong></a> ·
-  <a href="#-enterprise-features"><strong>Enterprise</strong></a>
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/"><strong>📖 Documentation</strong></a> ·
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/docs/getting-started"><strong>🚀 Quick Start</strong></a> ·
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/enterprise"><strong>🏢 Enterprise</strong></a> ·
+  <a href="#-features"><strong>✨ Features</strong></a>
 </p>
 
 <div align="center">
@@ -42,7 +41,7 @@ It is the perfect solution for teams aiming to scale AI adoption with governance
 
 ---
 
-## Key Features
+## ✨ Features
 
 ### Admin Dashboard
 
@@ -133,6 +132,8 @@ pnpm dev
 ```
 
 Access your app at [http://localhost:3000](http://localhost:3000)
+
+> **📖 For detailed documentation, visit [our documentation website](https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/)**
 
 ---
 
