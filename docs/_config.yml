@@ -6,7 +6,6 @@ baseurl: "/ai-chatbot-entrpise-kit"
 # Build settings
 markdown: kramdown
 highlighter: rouge
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
