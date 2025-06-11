@@ -111,12 +111,7 @@ description: "Empower your entire organization with centralized AI access, cost 
 
 ## Supported AI Providers
 
-| Provider      | Models Available                           | Features                           |
-| ------------- | ------------------------------------------ | ---------------------------------- |
-| **OpenAI**    | GPT-4.1, GPT-4o, GPT-4.1-mini, o1, o3-mini | Chat, reasoning, code generation   |
-| **Anthropic** | Claude 3 Haiku, Claude 3.7 Sonnet          | Advanced reasoning, long context   |
-| **xAI**       | Grok 2 Image                               | Image generation, creative tasks   |
-| **Custom**    | Extensible via Vercel AI SDK               | Add any provider with minimal code |
+All popular models are supported directly or by Vercel AI SDK kit.
 
 ## Quick Start
 
