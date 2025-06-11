@@ -96,17 +96,13 @@ DATABASE_URL=postgresql://username:password@localhost:5432/ai_chatbot
 
 # AI Provider API Keys
 
-OPENAI_API_KEY=sk-your-openai-api-key-here
-ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key-here
-
-# Admin Configuration
-
-ADMIN_EMAIL=admin@yourcompany.com
+OPENAI_API_KEY=your-openai-api-key-here
+ANTHROPIC_API_KEY=your-anthropic-api-key-here
 
 # Optional: Additional Providers
 
-XAI_API_KEY=your-xai-api-key
 GOOGLE_API_KEY=your-google-api-key
+VERTEX_API_KEY=your-vertex-api-key
 \`\`\`
 
 <div class="warning-box">
@@ -203,14 +199,29 @@ DATABASE_URL=postgresql://username:password@your-host:5432/database_name?sslmode
 2. Add your AI provider API keys
 3. Test the connections to ensure they're working
 
-### 3. Create Your First User
+### 3. Provider Testing</h3>
+
+<pre><code># test-providers.sh - Test AI provider connections
+./scripts/test-providers.sh
+
+# Test specific provider type
+./scripts/test-providers.sh text-models
+./scripts/test-providers.sh vision-models
+
+# What it tests:
+- API key validity
+- Rate limits
+- Model availability
+- Response time</code></pre>
+
+### 4. Create Your First User
 
 1. In the **Admin Dashboard**, go to **User Management**
 2. Click **Add User**
 3. Set up token budgets for the user
 4. Assign appropriate roles
 
-### 4. Set Token Budgets
+### 5. Set Token Budgets
 
 1. Navigate to **Token Analytics**
 2. Set default budgets for different user roles
