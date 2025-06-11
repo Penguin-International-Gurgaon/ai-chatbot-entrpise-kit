@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding AI Providers & Models - Enterprise AI Chatbot Platform</title>
+    <meta name="description" content="Learn how to add new AI providers and models to your Enterprise AI Chatbot Platform">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i data-lucide="bot" class="logo-icon"></i>
+                Enterprise AI Chatbot
+            </a>
+            
+            <nav class="nav" id="nav-menu">
+                <a href="../index.html">
+                    <i data-lucide="home"></i>
+                    Home
+                </a>
+                <a href="getting-started.html" class="active">
+                    <i data-lucide="book-open"></i>
+                    Documentation
+                </a>
+                <a href="../enterprise.html">
+                    <i data-lucide="building-2"></i>
+                    Enterprise
+                </a>
+                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="github-link" target="_blank">
+                    <i data-lucide="github"></i>
+                    GitHub
+                </a>
+            </nav>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="docs-layout">
+                <aside class="docs-sidebar">
+                    <nav class="docs-nav">
+                        <a href="getting-started.html">
+                            <i data-lucide="rocket"></i>
+                            Getting Started
+                        </a>
+                        <a href="docker.html">
+                            <i data-lucide="container"></i>
+                            Docker Deployment
+                        </a>
+                        <a href="providers.html" class="active">
+                            <i data-lucide="plug"></i>
+                            AI Providers
+                        </a>
+                        <a href="customization.html">
+                            <i data-lucide="palette"></i>
+                            Customization
+                        </a>
+                        <a href="scripts.html">
+                            <i data-lucide="terminal"></i>
+                            Scripts & Tools
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="docs-content">
+                    <h1>Adding AI Providers & Models</h1>
+                    <p class="lead">This guide will show you how to extend your Enterprise AI Chatbot Platform with additional AI providers and models. The platform is built on the Vercel AI SDK, making it easy to add virtually any AI provider.</p>
+
+                    <div class="info-box">
+                        <i data-lucide="info"></i>
+                        <div>
+                            <strong>Provider Support:</strong> The platform supports any AI provider that can be integrated with the Vercel AI SDK. You can add custom providers as needed for your specific use case.
+                        </div>
+                    </div>
+
+                    <h2>Adding a New Provider</h2>
+
+                    <h3><span class="step-number">1</span> Install Provider SDK</h3>
+                    <p>First, install the AI SDK package for your desired provider:</p>
+                    <pre><code># Example: Adding Google Gemini
+pnpm add @ai-sdk/google
+
+# Example: Adding Mistral AI
+pnpm add @ai-sdk/mistral
+
+# Example: Adding Cohere
+pnpm add @ai-sdk/cohere</code></pre>
+
+                    <h3><span class="step-number">2</span> Update Environment Variables</h3>
+                    <p>Add the API key for your new provider to <code>.env.local</code>:</p>
+                    <pre><code># Add to your existing .env.local file
+GOOGLE_API_KEY=your-google-api-key-here
+MISTRAL_API_KEY=your-mistral-api-key-here
+COHERE_API_KEY=your-cohere-api-key-here</code></pre>
+
+                    <h3><span class="step-number">3</span> Configure Provider in Code</h3>
+                    <p>Edit <code>lib/ai/providers.ts</code> to add your new provider:</p>
+                    <pre><code>import { createOpenAI } from '@ai-sdk/openai';
+import { createAnthropic } from '@ai-sdk/anthropic';
+import { createGoogleGenerativeAI } from '@ai-sdk/google'; // New import
+import { mistral } from '@ai-sdk/mistral'; // New import
+import { xai } from '@ai-sdk/xai';
+
+// Existing providers...
+const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  compatibility: 'strict',
+});
+
+const anthropic = createAnthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+// Add new providers
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_API_KEY,
+});
+
+const mistralProvider = mistral({
+  apiKey: process.env.MISTRAL_API_KEY,
+});
+
+export const myProvider = customProvider({
+  languageModels: {
+    // Existing models...
+    'openai-gpt-4.1': openai.chat('gpt-4.1'),
+    'claude-3-7-sonnet': anthropic('claude-3-7-sonnet-20250219'),
+    
+    // Add new models
+    'google-gemini-pro': google('gemini-pro'),
+    'google-gemini-pro-vision': google('gemini-pro-vision'),
+    'mistral-large': mistralProvider('mistral-large-latest'),
+    'mistral-medium': mistralProvider('mistral-medium-latest'),
+  },
+  imageModels: {
+    'grok-2-image': xai.image('grok-2-image'),
+    // Add image models if supported
+    'google-imagen': google.image('imagen-2'),
+  },
+});</code></pre>
+
+                    <h3><span class="step-number">4</span> Update Model Configuration</h3>
+                    <p>Add your new models to the model selector by editing <code>lib/ai/models.tsx</code>:</p>
+                    <pre><code>export const models = [
+  // Existing models...
+  {
+    id: 'openai-gpt-4.1',
+    name: 'GPT-4.1',
+    provider: 'OpenAI',
+    description: 'Most capable GPT-4 model',
+  },
+  
+  // Add new models
+  {
+    id: 'google-gemini-pro',
+    name: 'Gemini Pro',
+    provider: 'Google',
+    description: 'Google\'s most capable multimodal model',
+  },
+  {
+    id: 'mistral-large',
+    name: 'Mistral Large',
+    provider: 'Mistral AI',
+    description: 'Mistral\'s largest and most capable model',
+  },
+];</code></pre>
+
+                    <h2>Provider-Specific Configuration</h2>
+
+                    <h3>OpenAI Configuration</h3>
+                    <pre><code>const openai = createOpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  compatibility: 'strict', // For better compatibility
+  baseURL: 'https://api.openai.com/v1', // Custom endpoint if needed
+  organization: 'your-org-id', // Optional organization ID
+});</code></pre>
+
+                    <h3>Anthropic Configuration</h3>
+                    <pre><code>const anthropic = createAnthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  baseURL: 'https://api.anthropic.com', // Custom endpoint
+});</code></pre>
+
+                    <h3>Google Configuration</h3>
+                    <pre><code>const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_API_KEY,
+  baseURL: 'https://generativelanguage.googleapis.com/v1beta',
+});</code></pre>
+
+                    <h2>Testing New Providers</h2>
+
+                    <h3><span class="step-number">1</span> Create Test Script</h3>
+                    <p>Create a simple test script to verify your provider works:</p>
+                    <pre><code>// scripts/test-provider.ts
+import { generateText } from 'ai';
+import { myProvider } from '../lib/ai/providers';
+
+async function testProvider() {
+  try {
+    const result = await generateText({
+      model: myProvider.languageModel('google-gemini-pro'),
+      prompt: 'Hello, world!',
+    });
+    
+    console.log('✅ Provider test successful:', result.text);
+  } catch (error) {
+    console.error('❌ Provider test failed:', error);
+  }
+}
+
+testProvider();</code></pre>
+
+                    <p>Run the test:</p>
+                    <pre><code>npx tsx scripts/test-provider.ts</code></pre>
+
+                    <h2>Model Capabilities</h2>
+
+                    <h3>Supported Features by Provider Type</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                                <th>Implementation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Chat</td>
+                                <td>Conversational AI capabilities</td>
+                                <td><code>provider.languageModel('model-name')</code></td>
+                            </tr>
+                            <tr>
+                                <td>Vision</td>
+                                <td>Image understanding capabilities</td>
+                                <td><code>provider.visionModel('model-name')</code></td>
+                            </tr>
+                            <tr>
+                                <td>Function Calling</td>
+                                <td>Tool use and function execution</td>
+                                <td>Supported via AI SDK tools interface</td>
+                            </tr>
+                            <tr>
+                                <td>Image Generation</td>
+                                <td>Creating images from text prompts</td>
+                                <td><code>provider.imageModel('model-name')</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Token Budget Configuration</h2>
+
+                    <h3>Setting Up Budgets for New Models</h3>
+                    <p>When adding new models, you'll need to configure token budgets in the admin dashboard:</p>
+                    <ol>
+                        <li><strong>Go to Admin Dashboard</strong> → <strong>Token Analytics</strong></li>
+                        <li><strong>Add New Model</strong> with appropriate cost per token</li>
+                        <li><strong>Set Default Budgets</strong> for different user roles</li>
+                        <li><strong>Configure Rate Limits</strong> if needed</li>
+                    </ol>
+
+                    <h3>Model Pricing Configuration</h3>
+                    <p>Add pricing information for accurate budget tracking:</p>
+                    <pre><code>// lib/utils/token-calculator.ts
+export const modelPricing = {
+  // Existing models...
+  'openai-gpt-4.1': {
+    inputCost: 0.03,  // per 1K tokens
+    outputCost: 0.04, // per 1K tokens
+  },
+  
+  // Add new models
+  'google-gemini-pro': {
+    inputCost: 0.001,
+    outputCost: 0.002,
+  },
+  'mistral-large': {
+    inputCost: 0.004,
+    outputCost: 0.012,
+  },
+};</code></pre>
+
+                    <h2>Troubleshooting</h2>
+
+                    <div class="warning-box">
+                        <i data-lucide="alert-triangle"></i>
+                        <div>
+                            <strong>API Key Issues:</strong>
+                            <ul>
+                                <li>Verify API key is correct and has proper permissions</li>
+                                <li>Check if billing is set up for the provider</li>
+                                <li>Ensure rate limits haven't been exceeded</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <i data-lucide="alert-triangle"></i>
+                        <div>
+                            <strong>Model Not Available:</strong>
+                            <ul>
+                                <li>Check if the model ID is correct</li>
+                                <li>Verify your account has access to the model</li>
+                                <li>Some models may be in limited beta</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Debugging Steps</h3>
+                    <ol>
+                        <li><strong>Check Environment Variables:</strong>
+                            <pre><code>echo $GOOGLE_API_KEY</code></pre>
+                        </li>
+                        <li><strong>Test Provider Connection:</strong>
+                            <pre><code>npx tsx scripts/test-provider.ts</code></pre>
+                        </li>
+                        <li><strong>Check Application Logs:</strong>
+                            <pre><code>pnpm dev
+# Check console for errors</code></pre>
+                        </li>
+                    </ol>
+
+                    <h2>Best Practices</h2>
+
+                    <h3>Security</h3>
+                    <ul>
+                        <li><strong>Never commit API keys</strong> to version control</li>
+                        <li><strong>Use environment variables</strong> for all sensitive configuration</li>
+                        <li><strong>Rotate API keys regularly</strong> in production</li>
+                        <li><strong>Set up monitoring</strong> for API usage and costs</li>
+                    </ul>
+
+                    <h3>Performance</h3>
+                    <ul>
+                        <li><strong>Cache model responses</strong> when appropriate</li>
+                        <li><strong>Set reasonable timeouts</strong> for API calls</li>
+                        <li><strong>Implement retry logic</strong> for failed requests</li>
+                        <li><strong>Monitor token usage</strong> to prevent budget overruns</li>
+                    </ul>
+
+                    <h3>User Experience</h3>
+                    <ul>
+                        <li><strong>Provide clear model descriptions</strong> to help users choose</li>
+                        <li><strong>Set appropriate default models</strong> for different use cases</li>
+                        <li><strong>Show estimated costs</strong> before expensive operations</li>
+                        <li><strong>Implement graceful fallbacks</strong> when models are unavailable</li>
+                    </ul>
+
+                    <div class="success-box">
+                        <i data-lucide="check-circle"></i>
+                        <div>
+                            <strong>Provider Added Successfully!</strong> Your new AI provider should now be available in the model selector. Users can start using it immediately based on their token budgets.
+                        </div>
+                    </div>
+
+                    <div class="doc-navigation">
+                        <h3><i data-lucide="book-open"></i> Related Documentation</h3>
+                        <div class="doc-nav-grid">
+                            <div class="doc-nav-item">
+                                <a href="getting-started.html">
+                                    <i data-lucide="rocket" class="nav-icon"></i>
+                                    <strong>Getting Started</strong>
+                                    <div class="nav-desc">Initial setup and installation</div>
+                                </a>
+                            </div>
+                            <div class="doc-nav-item">
+                                <a href="docker.html">
+                                    <i data-lucide="container" class="nav-icon"></i>
+                                    <strong>Docker Deployment</strong>
+                                    <div class="nav-desc">Deploy with Docker</div>
+                                </a>
+                            </div>
+                            <div class="doc-nav-item">
+                                <a href="scripts.html">
+                                    <i data-lucide="terminal" class="nav-icon"></i>
+                                    <strong>Scripts & Tools</strong>
+                                    <div class="nav-desc">Automation scripts</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <a href="getting-started.html" class="nav-button">
+                            <i data-lucide="arrow-left"></i>
+                            Getting Started
+                        </a>
+                        <a href="customization.html" class="nav-button">
+                            Customization
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/docs.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
