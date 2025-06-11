@@ -1,0 +1,44 @@
+[layout]
+title = "PenguinChat"
+description = "PenguinChat Application, LLM for everyone!"
+
+[greeting]
+title = "Welcome to PenguinChat !"
+subtitle = "How can I help you today?"
+
+[theme]
+LIGHT_THEME_COLOR = "hsl(147deg, 50%, 47%)"
+DARK_THEME_COLOR = "hsl(240deg 10% 3.92%)"
+
+[header]
+favicon = "🐧"
+title = "PenguinChat"
+subtitle = "LLM for Everyone"
+custom_header_note = "LLM for Everyone in your team"
+
+[footer]
+enabled = true
+text = "Built by PenguinOne"
+privacy_policy = """
+This LLM-based chat application is provided by **Penguin International** for the sole use of employees to support daily work tasks, idea generation, communication assistance, and productivity enhancement.
+
+To ensure responsible usage and maintain operational integrity, the platform is monitored. Monitoring may include system-level logs, usage patterns, and anonymized metadata.
+"""
+usage_policy = """
+**General LLM Usage Guidelines:**
+- LLMs can occasionally be wrong — always verify outputs
+- Use critical thinking before acting on any result
+- Never share sensitive, confidential, or personal data
+
+**Ethical Use:** Avoid generating content that is inappropriate, offensive, misleading, discriminatory, or in violation of company code of conduct.
+"""
+
+[[suggested_actions]]
+title = "What are the advantages"
+label = "of using Next.js?"
+action = "What are the advantages of using Next.js?"
+
+[[suggested_actions]]
+title = "Write code to"
+label = "demonstrate dijkstra's algorithm"
+action = "Write code to demonstrate dijkstra's algorithm"

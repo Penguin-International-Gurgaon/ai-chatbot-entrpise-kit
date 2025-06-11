@@ -54,11 +54,11 @@ export function AdminDashboard({
         <h1 className="text-xl md:text-2xl font-semibold">Admin Dashboard</h1>
         <div className="flex items-center gap-2">
           <Button variant="outline" onClick={() => router.push("/")}>
-            <Home className="mr-2 h-4 w-4" />
+            <Home className="mr-2 size-4" />
             Go to App
           </Button>
           <Button variant="secondary" onClick={() => router.refresh()}>
-            <RefreshCcw className="mr-2 h-4 w-4 animate-spin-slow" />
+            <RefreshCcw className="mr-2 size-4 animate-spin-slow" />
             Refresh
           </Button>
         </div>
@@ -77,7 +77,7 @@ export function AdminDashboard({
           <TabsTrigger value="requests" className={tabTriggerClass}>
             Token Requests
             {tokenRequests.length > 0 && (
-              <span className="ml-2 inline-flex items-center justify-center text-xs font-semibold rounded-full bg-destructive text-white w-5 h-5">
+              <span className="ml-2 inline-flex items-center justify-center text-xs font-semibold rounded-full bg-destructive text-white size-5">
                 {tokenRequests.length}
               </span>
             )}

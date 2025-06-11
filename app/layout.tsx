@@ -3,11 +3,17 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
+import { getAppConfig } from '@/lib/config';
 import './globals.css';
 
+const config = getAppConfig();
+
 export const metadata: Metadata = {
-  title: 'PenguinChat',
-  description: 'PenguinChat Application, LLM for everyone!',
+  title: config.layout.title,
+  description: config.layout.description,
+  icons: {
+    icon: `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${config.header.favicon}</text></svg>`
+  }
 };
 
 export const viewport = {
@@ -26,25 +32,6 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 });
 
-const LIGHT_THEME_COLOR = 'hsl(0 0% 100%)';
-const DARK_THEME_COLOR = 'hsl(240deg 10% 3.92%)';
-const THEME_COLOR_SCRIPT = `\
-(function() {
-  var html = document.documentElement;
-  var meta = document.querySelector('meta[name="theme-color"]');
-  if (!meta) {
-    meta = document.createElement('meta');
-    meta.setAttribute('name', 'theme-color');
-    document.head.appendChild(meta);
-  }
-  function updateThemeColor() {
-    var isDark = html.classList.contains('dark');
-    meta.setAttribute('content', isDark ? '${DARK_THEME_COLOR}' : '${LIGHT_THEME_COLOR}');
-  }
-  var observer = new MutationObserver(updateThemeColor);
-  observer.observe(html, { attributes: true, attributeFilter: ['class'] });
-  updateThemeColor();
-})();`;
 
 export default async function RootLayout({
   children,
@@ -60,13 +47,17 @@ export default async function RootLayout({
       // https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
       suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable}`}
+      style={{
+        '--theme-light': config.theme.LIGHT_THEME_COLOR,
+        '--theme-dark': config.theme.DARK_THEME_COLOR
+      } as React.CSSProperties}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: THEME_COLOR_SCRIPT,
-          }}
-        />
+        {Object.entries(config.header)
+          .filter(([key]) => !['favicon', 'title', 'subtitle'].includes(key))
+          .map(([key, value]) => (
+            <meta key={key} name={key} content={value} />
+          ))}
       </head>
       <body className="antialiased">
         <ThemeProvider
