@@ -25,7 +25,7 @@ export default function Footer() {
   if (!data?.footer?.enabled) return null;
 
   return (
-    <footer className="w-full border-t px-2 py-2 text-xs text-muted-foreground/60 flex justify-between items-center flex-wrap gap-2">
+    <footer className="w-full border-t p-2 text-xs text-muted-foreground/60 flex justify-between items-center flex-wrap gap-2">
       <div>
         {data.footer.text}
       </div>
