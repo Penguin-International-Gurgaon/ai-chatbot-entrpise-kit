@@ -32,7 +32,7 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.05 * i }}
-          key={`suggested-${i}}`}
+          key={`suggested-${s.id || s.title || i}`}
           className={i > 1 ? 'hidden sm:block' : 'block'}
         >
           <Button

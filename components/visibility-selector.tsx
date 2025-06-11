@@ -44,9 +44,11 @@ export function VisibilitySelector({
   chatId,
   className,
   selectedVisibilityType,
+  onVisibilityChange,
 }: {
   chatId: string;
   selectedVisibilityType: VisibilityType;
+  onVisibilityChange?: (visibility: VisibilityType) => void;
 } & React.ComponentProps<typeof Button>) {
   const [open, setOpen] = useState(false);
 
@@ -86,6 +88,7 @@ export function VisibilitySelector({
             onSelect={() => {
               setVisibilityType(visibility.id);
               setOpen(false);
+              if (onVisibilityChange) onVisibilityChange(visibility.id);
             }}
             className="gap-4 group/item flex flex-row justify-between items-center"
             data-active={visibility.id === visibilityType}

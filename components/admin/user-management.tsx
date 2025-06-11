@@ -321,9 +321,13 @@ function BulkRevokeForm({
   userIds: string[]
   onComplete: () => void
 }) {
-  const [selectedModels, setSelectedModels] = useState<Record<string, boolean>>(
-    chatModels.reduce((acc, model) => ({ ...acc, [model.id]: false }), {}),
-  )
+    const [selectedModels, setSelectedModels] = useState<Record<string, boolean>>(() => {
+    const initialState: Record<string, boolean> = {}
+    for (const model of chatModels) {
+      initialState[model.id] = false
+    }
+    return initialState
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -382,7 +386,13 @@ function BulkRevokeForm({
           type="button"
           variant="outline"
           onClick={() => {
-            setSelectedModels(chatModels.reduce((acc, model) => ({ ...acc, [model.id]: true }), {}))
+            setSelectedModels(() => {
+              const initialState: Record<string, boolean> = {}
+              for (const model of chatModels) {
+                initialState[model.id] = false
+              }
+              return initialState
+            })
           }}
           className="flex-1"
         >
@@ -392,7 +402,13 @@ function BulkRevokeForm({
           type="button"
           variant="outline"
           onClick={() => {
-            setSelectedModels(chatModels.reduce((acc, model) => ({ ...acc, [model.id]: false }), {}))
+            setSelectedModels(() => {
+              const initialState: Record<string, boolean> = {}
+              for (const model of chatModels) {
+                initialState[model.id] = false
+              }
+              return initialState
+            })
           }}
           className="flex-1"
         >
