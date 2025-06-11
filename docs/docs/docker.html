@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Deployment Guide - Enterprise AI Chatbot Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i data-lucide="bot" class="logo-icon"></i>
+                Enterprise AI Chatbot
+            </a>
+            
+            <nav class="nav" id="nav-menu">
+                <a href="../index.html">
+                    <i data-lucide="home"></i>
+                    Home
+                </a>
+                <a href="getting-started.html" class="active">
+                    <i data-lucide="book-open"></i>
+                    Documentation
+                </a>
+                <a href="../enterprise.html">
+                    <i data-lucide="building-2"></i>
+                    Enterprise
+                </a>
+                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="github-link" target="_blank">
+                    <i data-lucide="github"></i>
+                    GitHub
+                </a>
+            </nav>
+            
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="docs-layout">
+                <aside class="docs-sidebar">
+                    <nav class="docs-nav">
+                        <a href="getting-started.html">
+                            <i data-lucide="rocket"></i>
+                            Getting Started
+                        </a>
+                        <a href="docker.html" class="active">
+                            <i data-lucide="container"></i>
+                            Docker Deployment
+                        </a>
+                        <a href="providers.html">
+                            <i data-lucide="plug"></i>
+                            AI Providers
+                        </a>
+                        <a href="customization.html">
+                            <i data-lucide="palette"></i>
+                            Customization
+                        </a>
+                        <a href="scripts.html">
+                            <i data-lucide="terminal"></i>
+                            Scripts & Tools
+                        </a>
+                    </nav>
+                </aside>
+
+                <div class="docs-content">
+                    <h1>Docker Deployment Guide</h1>
+                    <p class="lead">Complete Docker setup for the Enterprise AI Chatbot Platform with optimized production builds and development environment.</p>
+
+                    <div class="info-box">
+                        <i data-lucide="info"></i>
+                        <div>
+                            <strong>Quick Start:</strong> Use the provided scripts for fastest deployment. Development environment includes hot reload, while production is optimized for performance.
+                        </div>
+                    </div>
+
+                    <h2>Quick Start</h2>
+
+                    <h3><span class="step-number">1</span> Clone the Repository</h3>
+                    <pre><code>git clone https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit.git
+cd ai-chatbot-entrpise-kit</code></pre>
+
+                    <h3><span class="step-number">2</span> Development Environment</h3>
+                    <pre><code># Start development environment with hot reload
+./scripts/start-dev.sh
+
+# Or manually
+docker-compose -f docker-compose.dev.yml up --build</code></pre>
+
+                    <h3><span class="step-number">3</span> Production Environment</h3>
+                    <pre><code># Copy and configure environment
+cp .env.docker.example .env
+# Edit .env with your configuration
+
+# Start production environment
+./scripts/start-prod.sh
+
+# Or manually
+docker-compose -f docker-compose.prod.yml up --build -d</code></pre>
+
+                    <h2>File Structure</h2>
+                    <pre><code>├── Dockerfile                 # Optimized production image
+├── Dockerfile.dev            # Development image with hot reload
+├── docker-compose.dev.yml    # Development environment
+├── docker-compose.prod.yml   # Production environment
+├── .dockerignore             # Docker ignore rules
+├── .env.docker.example       # Environment template
+├── nginx/
+│   └── nginx.conf            # Nginx reverse proxy config
+└── scripts/
+    ├── start-dev.sh          # Development startup script
+    ├── start-prod.sh         # Production startup script
+    ├── backup-db.sh          # Database backup script
+    └── init-db.sql           # Database initialization</code></pre>
+
+                    <h2>Docker Images</h2>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="package"></i>
+                            </div>
+                            <h3>Production Image</h3>
+                            <ul>
+                                <li>Base: Node.js 18 Alpine</li>
+                                <li>Size: ~200MB (optimized)</li>
+                                <li>Multi-stage build</li>
+                                <li>Standalone Next.js output</li>
+                                <li>Non-root user for security</li>
+                                <li>Health checks included</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-lucide="code"></i>
+                            </div>
+                            <h3>Development Image</h3>
+                            <ul>
+                                <li>Base: Node.js 18 Alpine</li>
+                                <li>Size: ~500MB (includes dev deps)</li>
+                                <li>Hot reload support</li>
+                                <li>Volume mounting</li>
+                                <li>Debugging support</li>
+                                <li>Development tools included</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Environment Configuration</h2>
+
+                    <h3>Development (.env.local)</h3>
+                    <pre><code>NODE_ENV=development
+DATABASE_URL=postgresql://postgres:password@localhost:5432/ai_chatbot_dev
+AUTH_SECRET=dev-secret-key
+NEXTAUTH_URL=http://localhost:3000
+OPENAI_API_KEY=your-key-here
+ADMIN_EMAIL=admin@example.com</code></pre>
+
+                    <h3>Production (.env)</h3>
+                    <pre><code>NODE_ENV=production
+POSTGRES_PASSWORD=secure_password_here
+DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/ai_chatbot_prod
+AUTH_SECRET=super-secure-secret-key
+NEXTAUTH_URL=https://your-domain.com
+OPENAI_API_KEY=your-production-key
+ANTHROPIC_API_KEY=your-anthropic-key
+ADMIN_EMAIL=admin@your-domain.com</code></pre>
+
+                    <h2>Services</h2>
+
+                    <div class="service-grid">
+                        <div class="service-card">
+                            <h4><i data-lucide="server"></i> App Service</h4>
+                            <ul>
+                                <li>Ports: 3000 (internal), 3000 (host)</li>
+                                <li>Health check: /api/health endpoint</li>
+                                <li>Dependencies: Database, Redis (optional)</li>
+                                <li>Restart: unless-stopped</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-card">
+                            <h4><i data-lucide="database"></i> PostgreSQL Database</h4>
+                            <ul>
+                                <li>Image: postgres:15-alpine</li>
+                                <li>Ports: 5432</li>
+                                <li>Health check: pg_isready command</li>
+                                <li>Volumes: Persistent data storage</li>
+                                <li>Backup: Located in ./backups/</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-card">
+                            <h4><i data-lucide="zap"></i> Redis (Optional)</h4>
+                            <ul>
+                                <li>Image: redis:7-alpine</li>
+                                <li>Purpose: Session storage, caching</li>
+                                <li>Health check: redis-cli ping</li>
+                                <li>Security: Password protected in production</li>
+                            </ul>
+                        </div>
+
+                        <div class="service-card">
+                            <h4><i data-lucide="globe"></i> Nginx Reverse Proxy</h4>
+                            <ul>
+                                <li>Ports: 80, 443</li>
+                                <li>Rate limiting (API: 10 req/s)</li>
+                                <li>Gzip compression</li>
+                                <li>Security headers</li>
+                                <li>SSL/TLS termination ready</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h2>Common Commands</h2>
+
+                    <h3>Development</h3>
+                    <pre><code># Start development environment
+./scripts/start-dev.sh
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f
+
+# Access app container
+docker-compose -f docker-compose.dev.yml exec app sh
+
+# Run database migrations
+docker-compose -f docker-compose.dev.yml exec app pnpm db:migrate
+
+# Stop environment
+docker-compose -f docker-compose.dev.yml down</code></pre>
+
+                    <h3>Production</h3>
+                    <pre><code># Start production environment
+./scripts/start-prod.sh
+
+# View logs
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Create database backup
+./scripts/backup-db.sh
+
+# Update and rebuild
+docker-compose -f docker-compose.prod.yml pull
+docker-compose -f docker-compose.prod.yml up --build -d</code></pre>
+
+                    <h2>Health Checks & Monitoring</h2>
+
+                    <div class="info-box">
+                        <i data-lucide="activity"></i>
+                        <div>
+                            <strong>Health Check Endpoints:</strong>
+                            <ul>
+                                <li>App Health: <code>http://localhost:3000/api/health</code></li>
+                                <li>Nginx Status: <code>http://localhost:80/health</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Health Check Response</h3>
+                    <pre><code>{
+  "status": "ok",
+  "timestamp": "2024-01-01T00:00:00.000Z",
+  "uptime": 3600,
+  "environment": "production",
+  "version": "3.0.6"
+}</code></pre>
+
+                    <h2>Troubleshooting</h2>
+
+                    <div class="warning-box">
+                        <i data-lucide="alert-triangle"></i>
+                        <div>
+                            <strong>Common Issues:</strong>
+                            <ul>
+                                <li>Container won't start: Check logs with <code>docker-compose logs app</code></li>
+                                <li>Database connection issues: Verify database is running with <code>docker-compose ps db</code></li>
+                                <li>Port conflicts: Check for processes using ports with <code>lsof -i :3000</code></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Debug Commands</h3>
+                    <pre><code># Check container health
+docker-compose -f docker-compose.prod.yml ps
+
+# View health check logs
+docker inspect --format='{{json .State.Health}}' container_name
+
+# Check resource usage
+docker stats
+
+# Test database connection
+docker-compose -f docker-compose.prod.yml exec db pg_isready -U postgres</code></pre>
+
+                    <h2>Production Deployment Checklist</h2>
+
+                    <div class="checklist">
+                        <label><input type="checkbox"> Set strong passwords in <code>.env</code></label>
+                        <label><input type="checkbox"> Configure SSL certificates in <code>nginx/ssl/</code></label>
+                        <label><input type="checkbox"> Set up domain and DNS</label>
+                        <label><input type="checkbox"> Configure firewall rules</label>
+                        <label><input type="checkbox"> Set up monitoring and alerting</label>
+                        <label><input type="checkbox"> Configure automated backups</label>
+                        <label><input type="checkbox"> Test health check endpoints</label>
+                        <label><input type="checkbox"> Verify database migrations</label>
+                        <label><input type="checkbox"> Test application functionality</label>
+                        <label><input type="checkbox"> Set up log rotation</label>
+                        <label><input type="checkbox"> Configure resource limits</label>
+                        <label><input type="checkbox"> Document access credentials securely</label>
+                    </div>
+
+                    <div class="success-box">
+                        <i data-lucide="check-circle"></i>
+                        <div>
+                            <strong>Deployment Complete!</strong> Your Enterprise AI Chatbot Platform is now running in Docker. Monitor the health endpoints and check logs for any issues.
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <a href="getting-started.html" class="nav-button">
+                            <i data-lucide="arrow-left"></i>
+                            Getting Started
+                        </a>
+                        <a href="providers.html" class="nav-button">
+                            AI Providers
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/docs.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
