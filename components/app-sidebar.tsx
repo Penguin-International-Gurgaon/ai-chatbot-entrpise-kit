@@ -19,7 +19,7 @@ import {
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 
-export function AppSidebar({ user }: { user: User | undefined }) {
+export function AppSidebar({ user }: { user: User & { is_admin?: boolean } | undefined }) {
   const router = useRouter();
   const { setOpenMobile } = useSidebar();
 
