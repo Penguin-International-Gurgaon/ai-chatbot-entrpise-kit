@@ -681,7 +681,7 @@ export async function getTokenUsageData(): Promise<TokenUsageData> {
       .from(tokenBudget)
       .innerJoin(user, eq(tokenBudget.userId, user.id))
       .groupBy(tokenBudget.userId, user.email)
-      .orderBy(sql`SUM(${tokenBudget.usedBudget})`, "desc")
+      .orderBy(desc(sql`SUM(${tokenBudget.usedBudget})`))
       .limit(10);
 
     const topUsers = rawTopUsers.map((u) => ({
