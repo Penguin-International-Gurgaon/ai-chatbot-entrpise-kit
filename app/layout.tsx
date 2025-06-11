@@ -3,12 +3,14 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
+import { getAppConfig } from '@/lib/config';
 import './globals.css';
 
+const config = getAppConfig();
+
 export const metadata: Metadata = {
-  // metadataBase: new URL('https://chat.vercel.ai'),
-  title: 'PenguinChat',
-  description: 'PenguinChat Application, LLM for everyone!',
+  title: config.layout.title,
+  description: config.layout.description
 };
 
 export const viewport = {
@@ -27,8 +29,8 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 });
 
-const LIGHT_THEME_COLOR = 'hsl(0 0% 100%)';
-const DARK_THEME_COLOR = 'hsl(240deg 10% 3.92%)';
+const LIGHT_THEME_COLOR = config.theme.LIGHT_THEME_COLOR;
+const DARK_THEME_COLOR = config.theme.DARK_THEME_COLOR;
 const THEME_COLOR_SCRIPT = `\
 (function() {
   var html = document.documentElement;
@@ -63,7 +65,11 @@ export default async function RootLayout({
       className={`${geist.variable} ${geistMono.variable}`}
     >
       <head>
+        {Object.entries(config.header).map(([key, value]) => (
+          <meta key={key} name={key} content={value} />
+        ))}
         <script
+        //TODO : Check this !
           dangerouslySetInnerHTML={{
             __html: THEME_COLOR_SCRIPT,
           }}
