@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +27,6 @@
             </div>
 
             <div class="features">
-                <h2>Why Choose Our Open Source Platform?</h2>
                 <div class="feature-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
@@ -79,28 +77,10 @@
                     </div>
                 </div>
             </div>
-
-            <div class="stats">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3>100%</h3>
-                        <p>Open Source</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>5 mins</h3>
-                        <p>Setup Time</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>10+</h3>
-                        <p>AI Providers</p>
-                    </div>
-                </div>
-            </div>
-
             <div class="enterprise">
                 <h2>Enterprise Solutions</h2>
                 <p>Need advanced controls, enhanced compliance, or dedicated support? We offer tailored enterprise solutions with custom development, maintenance, and professional services.</p>
-                <a href="enterprise.html" class="cta-button">
+                <a href="enterprise.html" class="cta-button" style="background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green); margin-left: 1rem;">
                     <i data-lucide="phone"></i>
                     Contact Enterprise Team
                 </a>
@@ -176,19 +156,13 @@ pnpm dev</code></pre>
             <div style="text-align: center; padding: 2rem; background: var(--bg-accent); margin-top: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
                 <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Open Source & Community Driven</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">This project is sponsored by <strong>Penguin International</strong> and actively maintained by our team to contribute to the open source community.</p>
-                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="cta-button">
+                <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="cta-button" style="background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green); margin-left: 1rem;">
                     <i data-lucide="github"></i>
                     View on GitHub
                 </a>
             </div>
         </div>
     </main>
-
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
-        </div>
-    </footer>
 
     <script>
         // Initialize Lucide icons
