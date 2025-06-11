@@ -21,7 +21,7 @@ The platform uses a centralized configuration approach with the `config.toml` fi
 - **Greeting messages** and welcome text
 
 <div class="info-box">
-<strong>📁 Configuration File Location:</strong> The main configuration file is located at <code>config.toml</code> in your project root directory.
+<strong>Configuration File Location:</strong> The main configuration file is located at <code>config.toml</code> in your project root directory.
 </div>
 
 ## Configuration Sections
@@ -29,7 +29,7 @@ The platform uses a centralized configuration approach with the `config.toml` fi
 ### <span class="step-number">1</span> Layout Configuration
 
 <div class="config-section">
-  <h3>🎨 [layout]</h3>
+  <h3><i data-lucide="layout"></i> [layout]</h3>
   <p>Controls the main application layout and metadata.</p>
   
   <table class="option-table">
@@ -45,14 +45,14 @@ The platform uses a centralized configuration approach with the `config.toml` fi
       <tr>
         <td>title</td>
         <td>Application title shown in browser tab</td>
-        <td>"PenguinChat"</td>
+        <td>"Enterprise AI Chat"</td>
         <td>"YourCompany AI"</td>
       </tr>
       <tr>
         <td>description</td>
         <td>Meta description for SEO and sharing</td>
-        <td>"PenguinChat Application, LLM for everyone!"</td>
-        <td>"Enterprise AI Platform"</td>
+        <td>"Enterprise AI Platform for Teams"</td>
+        <td>"AI Assistant for Acme Corp"</td>
       </tr>
     </tbody>
   </table>
@@ -66,7 +66,7 @@ description = "Secure AI chatbot platform for Acme Corporation employees"</code>
 ### <span class="step-number">2</span> Greeting Configuration
 
 <div class="config-section">
-  <h3>👋 [greeting]</h3>
+  <h3><i data-lucide="message-circle"></i> [greeting]</h3>
   <p>Customizes the welcome message users see when they first visit the application.</p>
   
   <table class="option-table">
@@ -82,7 +82,7 @@ description = "Secure AI chatbot platform for Acme Corporation employees"</code>
       <tr>
         <td>title</td>
         <td>Main greeting title</td>
-        <td>"Welcome to PenguinChat !"</td>
+        <td>"Welcome to Enterprise AI!"</td>
         <td>"Welcome to Acme AI!"</td>
       </tr>
       <tr>
@@ -103,7 +103,7 @@ subtitle = "How can I help you be more productive today?"</code></pre>
 ### <span class="step-number">3</span> Theme Configuration
 
 <div class="config-section">
-  <h3>🎨 [theme]</h3>
+  <h3><i data-lucide="palette"></i> [theme]</h3>
   <p>Controls the visual appearance and color scheme of your application.</p>
   
   <table class="option-table">
@@ -117,52 +117,50 @@ subtitle = "How can I help you be more productive today?"</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td>LIGHT_THEME_COLOR</td>
-        <td>Primary color for light theme</td>
-        <td>hsl(147deg, 50%, 47%) <span class="color-preview" style="background: hsl(147deg, 50%, 47%);"></span></td>
-        <td>HSL or HEX</td>
+        <td>primary_color</td>
+        <td>Primary brand color</td>
+        <td>#2563eb</td>
+        <td>HEX or HSL</td>
       </tr>
       <tr>
-        <td>DARK_THEME_COLOR</td>
-        <td>Primary color for dark theme</td>
-        <td>hsl(240deg 10% 3.92%) <span class="color-preview" style="background: hsl(240deg, 10%, 3.92%);"></span></td>
-        <td>HSL or HEX</td>
+        <td>secondary_color</td>
+        <td>Secondary accent color</td>
+        <td>#7c3aed</td>
+        <td>HEX or HSL</td>
       </tr>
     </tbody>
   </table>
   
   <strong>Color Format Options:</strong>
-  <pre><code># HSL Format (recommended)
-LIGHT_THEME_COLOR = "hsl(220deg, 70%, 50%)"
-DARK_THEME_COLOR = "hsl(220deg, 15%, 15%)"
+  <pre><code># HEX Format (recommended)
+primary_color = "#3b82f6"
+secondary_color = "#7c3aed"
 
-# HEX Format
-LIGHT_THEME_COLOR = "#3b82f6"
-DARK_THEME_COLOR = "#1e293b"
+# HSL Format
 
-# RGB Format
-LIGHT_THEME_COLOR = "rgb(59, 130, 246)"
-DARK_THEME_COLOR = "rgb(30, 41, 59)"</code></pre>
+primary_color = "hsl(220deg, 70%, 50%)"
+secondary_color = "hsl(262deg, 83%, 58%)"</code></pre>
 
-  <strong>Popular Corporate Color Examples:</strong>
+<strong>Popular Corporate Color Examples:</strong>
+
   <pre><code># Blue (Professional)
-LIGHT_THEME_COLOR = "hsl(220deg, 70%, 50%)"  # Blue
-DARK_THEME_COLOR = "hsl(220deg, 15%, 15%)"   # Dark Blue
+primary_color = "#2563eb"    # Blue
+secondary_color = "#1e40af"  # Dark Blue
 
 # Green (Tech/Growth)
-LIGHT_THEME_COLOR = "hsl(142deg, 71%, 45%)"  # Green
-DARK_THEME_COLOR = "hsl(142deg, 25%, 15%)"   # Dark Green
+primary_color = "#059669"    # Green
+secondary_color = "#047857"  # Dark Green
 
 # Purple (Creative)
-LIGHT_THEME_COLOR = "hsl(262deg, 83%, 58%)"  # Purple
-DARK_THEME_COLOR = "hsl(262deg, 25%, 15%)"   # Dark Purple</code></pre>
+primary_color = "#7c3aed"    # Purple
+secondary_color = "#6d28d9"  # Dark Purple</code></pre>
 </div>
 
 ### <span class="step-number">4</span> Header Configuration
 
 <div class="config-section">
-  <h3>📄 [header]</h3>
-  <p>Customizes the application header, including favicon and titles.</p>
+  <h3><i data-lucide="header"></i> [header]</h3>
+  <p>Customizes the application header, including branding and titles.</p>
   
   <table class="option-table">
     <thead>
@@ -175,44 +173,37 @@ DARK_THEME_COLOR = "hsl(262deg, 25%, 15%)"   # Dark Purple</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td>favicon</td>
-        <td>Emoji or icon for browser tab</td>
-        <td>"🐧"</td>
-        <td>"🤖", "💼", "🏢"</td>
-      </tr>
-      <tr>
         <td>title</td>
         <td>Main header title</td>
-        <td>"PenguinChat"</td>
+        <td>"Enterprise AI Chatbot"</td>
         <td>"Acme AI"</td>
       </tr>
       <tr>
         <td>subtitle</td>
         <td>Header subtitle/tagline</td>
-        <td>"LLM for Everyone"</td>
+        <td>"AI for Teams"</td>
         <td>"AI for Productivity"</td>
       </tr>
       <tr>
-        <td>custom_header_note</td>
-        <td>Additional header text</td>
-        <td>"LLM for Everyone in your team"</td>
-        <td>"Secure AI for Enterprise"</td>
+        <td>show_logo</td>
+        <td>Display company logo</td>
+        <td>true</td>
+        <td>false</td>
       </tr>
     </tbody>
   </table>
   
   <strong>Example Configuration:</strong>
   <pre><code>[header]
-favicon = "🏢"
 title = "Acme AI Assistant"
 subtitle = "Enterprise AI Platform"
-custom_header_note = "Secure AI solutions for your team"</code></pre>
+show_logo = true</code></pre>
 </div>
 
 ### <span class="step-number">5</span> Footer Configuration
 
 <div class="config-section">
-  <h3>📝 [footer]</h3>
+  <h3><i data-lucide="layout"></i> [footer]</h3>
   <p>Controls footer visibility, company information, and policy text.</p>
   
   <table class="option-table">
@@ -232,10 +223,10 @@ custom_header_note = "Secure AI solutions for your team"</code></pre>
         <td>true</td>
       </tr>
       <tr>
-        <td>text</td>
-        <td>Footer company text</td>
+        <td>company_name</td>
+        <td>Company name in footer</td>
         <td>String</td>
-        <td>"Built by PenguinOne"</td>
+        <td>"Your Company"</td>
       </tr>
       <tr>
         <td>privacy_policy</td>
@@ -255,25 +246,25 @@ custom_header_note = "Secure AI solutions for your team"</code></pre>
   <strong>Example Configuration:</strong>
   <pre><code>[footer]
 enabled = true
-text = "Built by Acme Corporation IT Department"
+company_name = "Acme Corporation"
 privacy_policy = """
 This AI platform is provided by **Acme Corporation** for authorized employees only.
 
-All interactions are logged for security and compliance purposes. Do not share confidential information.
+All interactions are logged for security and compliance purposes.
 """
 usage_policy = """
 **Acme Corp AI Usage Guidelines:**
+
 - Verify all AI-generated content before use
 - Do not input confidential or sensitive data
 - Use for business purposes only
-- Report any issues to IT support
 """</code></pre>
 </div>
 
 ### <span class="step-number">6</span> Suggested Actions
 
 <div class="config-section">
-  <h3>💡 [[suggested_actions]]</h3>
+  <h3><i data-lucide="lightbulb"></i> [[suggested_actions]]</h3>
   <p>Define suggested prompts that appear on the main page to help users get started.</p>
   
   <table class="option-table">
@@ -311,80 +302,58 @@ label = "for client follow-up"
 action = "Draft a professional email for client follow-up"
 
 # Data Analysis
+
 [[suggested_actions]]
 title = "Analyze this spreadsheet data"
 label = "and provide insights"
 action = "Analyze this spreadsheet data and provide key insights"
 
 # Documentation
+
 [[suggested_actions]]
 title = "Create documentation for"
 label = "our new project workflow"
-action = "Create documentation for our new project workflow"
+action = "Create documentation for our new project workflow"</code></pre>
 
-# Meeting Preparation
-[[suggested_actions]]
-title = "Prepare talking points for"
-label = "quarterly review meeting"
-action = "Prepare talking points for quarterly review meeting"</code></pre>
 </div>
 
 ## Advanced Customization
 
-### Custom CSS Styling
-
-For advanced visual customization beyond the theme colors, you can modify the CSS variables in your Tailwind configuration:
-
-<strong>File: `tailwind.config.ts`</strong>
-<pre><code>export default {
-  theme: {
-    extend: {
-      colors: {
-        // Custom brand colors
-        brand: {
-          primary: 'hsl(var(--brand-primary))',
-          secondary: 'hsl(var(--brand-secondary))',
-        },
-        // Override default colors
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-      },
-    },
-  },
-}</code></pre>
-
-### Logo and Assets
+### Custom Logo and Assets
 
 Replace default assets with your company branding:
 
-<strong>File: `public/images/`</strong>
-<pre><code># Replace these files with your branding:
+**File Structure:**
+\`\`\`
 public/
 ├── images/
-│   ├── logo.png              # Company logo
-│   ├── logo-dark.png         # Dark theme logo
-│   ├── favicon.ico           # Browser favicon
-│   └── og-image.png          # Social sharing image</code></pre>
+│ ├── logo.png # Company logo (light theme)
+│ ├── logo-dark.png # Company logo (dark theme)
+│ ├── favicon.ico # Browser favicon
+│ └── og-image.png # Social sharing image
+\`\`\`
 
 ### Environment-Based Configuration
 
 You can have different configurations for different environments:
 
-<strong>File: `config.production.toml`</strong>
-<pre><code>[layout]
+**File: `config.production.toml`**
+\`\`\`toml
+[layout]
 title = "Acme AI - Production"
 description = "Production AI platform for Acme Corporation"
 
 [header]
-favicon = "🏢"
 title = "Acme AI"
-subtitle = "Production Environment"</code></pre>
+subtitle = "Production Environment"
+\`\`\`
 
 ## Complete Example Configuration
 
 Here's a complete example of a customized `config.toml` for a fictional company:
 
-<pre><code>[layout]
+\`\`\`toml
+[layout]
 title = "TechCorp AI Assistant"
 description = "Enterprise AI platform for TechCorp employees - boost productivity with secure AI"
 
@@ -393,22 +362,22 @@ title = "Welcome to TechCorp AI!"
 subtitle = "How can I help you be more productive today?"
 
 [theme]
-LIGHT_THEME_COLOR = "hsl(220deg, 70%, 50%)"
-DARK_THEME_COLOR = "hsl(220deg, 15%, 15%)"
+primary_color = "#2563eb"
+secondary_color = "#1e40af"
 
 [header]
-favicon = "🚀"
 title = "TechCorp AI"
 subtitle = "Secure AI for Innovation"
-custom_header_note = "Empowering teams with responsible AI"
+show_logo = true
 
 [footer]
 enabled = true
-text = "Built by TechCorp IT Department | v2.0"
+company_name = "TechCorp IT Department"
 privacy_policy = """
 This AI platform is provided by **TechCorp** for authorized employees only.
 
 **Data Handling:**
+
 - All conversations are encrypted and stored securely
 - Usage data is collected for improvement and compliance
 - No personal conversations are reviewed unless required for security
@@ -429,11 +398,6 @@ usage_policy = """
 ✗ Personal or non-business use
 ✗ Generating inappropriate content
 ✗ Attempting to bypass security measures
-
-**Best Practices:**
-- Always review AI output before use
-- Verify facts and calculations
-- Don't rely solely on AI for critical decisions
 """
 
 [[suggested_actions]]
@@ -454,7 +418,8 @@ action = "Create a detailed meeting agenda for product roadmap review"
 [[suggested_actions]]
 title = "Draft technical documentation"
 label = "for API endpoints"
-action = "Draft comprehensive technical documentation for our new API endpoints"</code></pre>
+action = "Draft comprehensive technical documentation for our new API endpoints"
+\`\`\`
 
 ## Testing Your Configuration
 
@@ -462,13 +427,19 @@ action = "Draft comprehensive technical documentation for our new API endpoints"
 
 After making changes to `config.toml`, restart your development server:
 
-<pre><code># Stop the server (Ctrl+C)
+\`\`\`bash
+
+# Stop the server (Ctrl+C)
+
 # Then restart
-pnpm dev</code></pre>
+
+pnpm dev
+\`\`\`
 
 ### <span class="step-number">2</span> Clear Browser Cache
 
 Clear your browser cache to see changes:
+
 - **Chrome/Edge:** Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
 - **Firefox:** Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)
 
@@ -477,7 +448,7 @@ Clear your browser cache to see changes:
 Test both light and dark themes to ensure your colors work well in both modes.
 
 <div class="warning-box">
-<strong>⚠️ Configuration Tips:</strong>
+<strong>Configuration Tips:</strong>
 <ul>
 <li>Always backup your original <code>config.toml</code> before making changes</li>
 <li>Test color contrast for accessibility compliance</li>
@@ -487,29 +458,29 @@ Test both light and dark themes to ensure your colors work well in both modes.
 </div>
 
 <div class="success-box">
-<strong>✅ Configuration Complete!</strong> Your Enterprise AI Chatbot Platform is now customized with your organization's branding and requirements.
+<strong>Configuration Complete!</strong> Your Enterprise AI Chatbot Platform is now customized with your organization's branding and requirements.
 </div>
 
 <div class="doc-navigation">
-  <h3>📚 Related Documentation</h3>
+  <h3><i data-lucide="book-open"></i> Related Documentation</h3>
   <div class="doc-nav-grid">
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/docs/getting-started">
-        <span class="nav-icon">🚀</span>
+        <i data-lucide="rocket" class="nav-icon"></i>
         <strong>Getting Started</strong>
         <div class="nav-desc">Initial setup and installation</div>
       </a>
     </div>
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/docs/providers">
-        <span class="nav-icon">🔌</span>
+        <i data-lucide="plug" class="nav-icon"></i>
         <strong>Add Providers</strong>
         <div class="nav-desc">Configure AI providers</div>
       </a>
     </div>
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/enterprise">
-        <span class="nav-icon">🏢</span>
+        <i data-lucide="building-2" class="nav-icon"></i>
         <strong>Enterprise</strong>
         <div class="nav-desc">Advanced features</div>
       </a>
@@ -518,8 +489,20 @@ Test both light and dark themes to ensure your colors work well in both modes.
 </div>
 
 <div class="nav-buttons">
-  <a href="/ai-chatbot-entrpise-kit/docs/providers" class="nav-button">← Add Providers</a>
-  <a href="/ai-chatbot-entrpise-kit/enterprise" class="nav-button">Enterprise →</a>
+  <a href="/ai-chatbot-entrpise-kit/docs/providers" class="nav-button">
+    <i data-lucide="arrow-left"></i>
+    Add Providers
+  </a>
+  <a href="/ai-chatbot-entrpise-kit/enterprise" class="nav-button">
+    Enterprise
+    <i data-lucide="arrow-right"></i>
+  </a>
 </div>
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+  });
+</script>

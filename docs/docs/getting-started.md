@@ -11,35 +11,43 @@ description: "Complete guide to setting up and deploying your Enterprise AI Chat
 Welcome to the Enterprise AI Chatbot Platform! This guide will walk you through setting up and deploying your own instance of the platform.
 
 <div class="info-box">
-<strong>📋 Before You Begin:</strong> This guide assumes you have basic knowledge of Node.js, PostgreSQL, and command-line operations. If you need help with enterprise deployment, <a href="/ai-chatbot-entrpise-kit/enterprise">contact our enterprise team</a>.
+<strong>Before You Begin:</strong> This guide assumes you have basic knowledge of Node.js, PostgreSQL, and command-line operations. If you need help with enterprise deployment, <a href="/ai-chatbot-entrpise-kit/enterprise">contact our enterprise team</a>.
 </div>
 
 ## Prerequisites
 
 <div class="requirements-grid">
   <div class="requirement-item">
-    <div class="requirement-icon">🟢</div>
+    <div class="requirement-icon">
+      <i data-lucide="server"></i>
+    </div>
     <h3>Node.js</h3>
     <p>Version 18.x or higher</p>
     <code>node --version</code>
   </div>
   
   <div class="requirement-item">
-    <div class="requirement-icon">📦</div>
+    <div class="requirement-icon">
+      <i data-lucide="package"></i>
+    </div>
     <h3>pnpm</h3>
     <p>Package manager</p>
     <code>npm install -g pnpm</code>
   </div>
   
   <div class="requirement-item">
-    <div class="requirement-icon">🐘</div>
+    <div class="requirement-icon">
+      <i data-lucide="database"></i>
+    </div>
     <h3>PostgreSQL</h3>
     <p>Version 14+ recommended</p>
     <code>psql --version</code>
   </div>
   
   <div class="requirement-item">
-    <div class="requirement-icon">🔑</div>
+    <div class="requirement-icon">
+      <i data-lucide="key"></i>
+    </div>
     <h3>API Keys</h3>
     <p>For AI providers</p>
     <small>OpenAI, Anthropic, etc.</small>
@@ -50,89 +58,101 @@ Welcome to the Enterprise AI Chatbot Platform! This guide will walk you through 
 
 ### <span class="step-number">1</span> Clone the Repository
 
-```bash
+\`\`\`bash
 git clone https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit.git
 cd ai-chatbot-entrpise-kit
-```
+\`\`\`
 
 ### <span class="step-number">2</span> Install Dependencies
 
-```bash
+\`\`\`bash
 pnpm install
-```
+\`\`\`
 
 <div class="info-box">
-<strong>💡 Tip:</strong> If you prefer npm or yarn, you can use those instead, but pnpm is recommended for better performance and disk space efficiency.
+<strong>Tip:</strong> If you prefer npm or yarn, you can use those instead, but pnpm is recommended for better performance and disk space efficiency.
 </div>
 
 ### <span class="step-number">3</span> Environment Setup
 
 Create your environment configuration file:
 
-```bash
+\`\`\`bash
 cp .env.example .env.local
-```
+\`\`\`
 
 Edit `.env.local` with your configuration:
 
-```env
+\`\`\`env
+
 # Authentication
+
 AUTH_SECRET=your-super-secret-auth-key-here
 NEXTAUTH_URL=http://localhost:3000
 
 # Database
+
 DATABASE_URL=postgresql://username:password@localhost:5432/ai_chatbot
 
 # AI Provider API Keys
+
 OPENAI_API_KEY=sk-your-openai-api-key-here
 ANTHROPIC_API_KEY=sk-ant-your-anthropic-api-key-here
 
 # Admin Configuration
+
 ADMIN_EMAIL=admin@yourcompany.com
 
 # Optional: Additional Providers
+
 XAI_API_KEY=your-xai-api-key
 GOOGLE_API_KEY=your-google-api-key
-```
+\`\`\`
 
 <div class="warning-box">
-<strong>⚠️ Security Note:</strong> Never commit your `.env.local` file to version control. It contains sensitive API keys and secrets.
+<strong>Security Note:</strong> Never commit your `.env.local` file to version control. It contains sensitive API keys and secrets.
 </div>
 
 ### <span class="step-number">4</span> Database Setup
 
 Initialize your PostgreSQL database:
 
-```bash
+\`\`\`bash
+
 # Create database (if not already created)
+
 createdb ai_chatbot
 
 # Run migrations to set up tables
+
 pnpm db:migrate
-```
+\`\`\`
 
 ### <span class="step-number">5</span> Create Admin User
 
 Set up your first admin user:
 
-```bash
+\`\`\`bash
 pnpm run set-admin --email admin@yourcompany.com
-```
+\`\`\`
 
 <div class="success-box">
-<strong>✅ Success:</strong> Your admin user has been created! You can now log in with this email address.
+<strong>Success:</strong> Your admin user has been created! You can now log in with this email address.
 </div>
 
 ### <span class="step-number">6</span> Start the Application
 
-```bash
+\`\`\`bash
+
 # Development mode
+
 pnpm dev
 
 # Production mode
+
 pnpm build
 pnpm start
-```
+\`\`\`
 
 Visit [http://localhost:3000](http://localhost:3000) to access your application.
 
@@ -140,34 +160,34 @@ Visit [http://localhost:3000](http://localhost:3000) to access your application.
 
 ### Environment Variables Reference
 
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `AUTH_SECRET` | Secret key for authentication | ✅ | - |
-| `DATABASE_URL` | PostgreSQL connection string | ✅ | - |
-| `OPENAI_API_KEY` | OpenAI API key | ✅ | - |
-| `ANTHROPIC_API_KEY` | Anthropic API key | ❌ | - |
-| `XAI_API_KEY` | xAI API key | ❌ | - |
-| `ADMIN_EMAIL` | Default admin email | ✅ | - |
-| `NEXTAUTH_URL` | Application URL | ✅ | `http://localhost:3000` |
+| Variable            | Description                   | Required                                                                                   | Default                 |
+| ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------ | ----------------------- |
+| `AUTH_SECRET`       | Secret key for authentication | <i data-lucide="check" style="color: var(--accent-green); width: 16px; height: 16px;"></i> | -                       |
+| `DATABASE_URL`      | PostgreSQL connection string  | <i data-lucide="check" style="color: var(--accent-green); width: 16px; height: 16px;"></i> | -                       |
+| `OPENAI_API_KEY`    | OpenAI API key                | <i data-lucide="check" style="color: var(--accent-green); width: 16px; height: 16px;"></i> | -                       |
+| `ANTHROPIC_API_KEY` | Anthropic API key             | <i data-lucide="x" style="color: var(--text-muted); width: 16px; height: 16px;"></i>       | -                       |
+| `XAI_API_KEY`       | xAI API key                   | <i data-lucide="x" style="color: var(--text-muted); width: 16px; height: 16px;"></i>       | -                       |
+| `ADMIN_EMAIL`       | Default admin email           | <i data-lucide="check" style="color: var(--accent-green); width: 16px; height: 16px;"></i> | -                       |
+| `NEXTAUTH_URL`      | Application URL               | <i data-lucide="check" style="color: var(--accent-green); width: 16px; height: 16px;"></i> | `http://localhost:3000` |
 
 ### Database Configuration
 
 The application uses PostgreSQL with Drizzle ORM. You can configure your database connection in several ways:
 
 **Local PostgreSQL:**
-```env
+\`\`\`env
 DATABASE_URL=postgresql://username:password@localhost:5432/ai_chatbot
-```
+\`\`\`
 
 **Docker PostgreSQL:**
-```bash
+\`\`\`bash
 docker run --name ai-chatbot-db -e POSTGRES_DB=ai_chatbot -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:14
-```
+\`\`\`
 
 **Cloud PostgreSQL (Supabase, Neon, etc.):**
-```env
+\`\`\`env
 DATABASE_URL=postgresql://username:password@your-host:5432/database_name?sslmode=require
-```
+\`\`\`
 
 ## First Steps After Installation
 
@@ -202,51 +222,47 @@ DATABASE_URL=postgresql://username:password@your-host:5432/database_name?sslmode
 
 Create a `docker-compose.yml` file:
 
-```yaml
+\`\`\`yaml
 version: '3.8'
 
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://postgres:password@db:5432/ai_chatbot
-      - AUTH_SECRET=your-production-secret
-      - OPENAI_API_KEY=your-openai-key
-    depends_on:
-      - db
+app:
+build: .
+ports: - "3000:3000"
+environment: - DATABASE_URL=postgresql://postgres:password@db:5432/ai_chatbot - AUTH_SECRET=your-production-secret - OPENAI_API_KEY=your-openai-key
+depends_on: - db
 
-  db:
-    image: postgres:14
-    environment:
-      - POSTGRES_DB=ai_chatbot
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+db:
+image: postgres:14
+environment: - POSTGRES_DB=ai_chatbot - POSTGRES_USER=postgres - POSTGRES_PASSWORD=password
+volumes: - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
-```
+postgres_data:
+\`\`\`
 
 ### Cloud Deployment Options
 
 **Vercel (Recommended for small-medium teams):**
-```bash
+\`\`\`bash
+
 # Install Vercel CLI
+
 npm install -g vercel
 
 # Deploy
+
 vercel --prod
-```
+\`\`\`
 
 **AWS/Azure/GCP:**
+
 - Use Docker containers with managed databases
 - Set up load balancers for high availability
 - Configure auto-scaling based on usage
 
 **Self-hosted:**
+
 - Use reverse proxy (nginx/Apache)
 - Set up SSL certificates
 - Configure monitoring and logging
@@ -256,21 +272,25 @@ vercel --prod
 ### Common Issues
 
 **Database Connection Failed:**
+
 - Verify PostgreSQL is running
 - Check DATABASE_URL format
 - Ensure database exists
 
 **Authentication Not Working:**
+
 - Verify AUTH_SECRET is set
 - Check NEXTAUTH_URL matches your domain
 - Clear browser cookies and try again
 
 **API Keys Not Working:**
+
 - Verify API keys are correct and active
 - Check rate limits haven't been exceeded
 - Ensure billing is set up for AI providers
 
 **Build Errors:**
+
 - Clear node_modules and reinstall: `rm -rf node_modules && pnpm install`
 - Check Node.js version compatibility
 - Verify all environment variables are set
@@ -286,29 +306,29 @@ If you encounter issues:
 ## Next Steps
 
 <div class="success-box">
-<strong>🎉 Congratulations!</strong> Your Enterprise AI Chatbot Platform is now running. Here's what to do next:
+<strong>Congratulations!</strong> Your Enterprise AI Chatbot Platform is now running. Here's what to do next:
 </div>
 
 <div class="doc-navigation">
-  <h3>📚 Documentation Quick Access</h3>
+  <h3><i data-lucide="book-open"></i> Documentation Quick Access</h3>
   <div class="doc-nav-grid">
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/docs/providers">
-        <span class="nav-icon">🔌</span>
+        <i data-lucide="plug" class="nav-icon"></i>
         <strong>Add Providers</strong>
-        <div class="nav-desc">Configure OpenAI, Anthropic, xAI, and more</div>
+        <div class="nav-desc">Configure OpenAI, Anthropic, xAI, Google, and more</div>
       </a>
     </div>
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/docs/customization">
-        <span class="nav-icon">🎨</span>
+        <i data-lucide="palette" class="nav-icon"></i>
         <strong>Customization</strong>
         <div class="nav-desc">Brand your platform with config.toml</div>
       </a>
     </div>
     <div class="doc-nav-item">
       <a href="/ai-chatbot-entrpise-kit/enterprise">
-        <span class="nav-icon">🏢</span>
+        <i data-lucide="building-2" class="nav-icon"></i>
         <strong>Enterprise</strong>
         <div class="nav-desc">Advanced features and support</div>
       </a>
@@ -317,7 +337,7 @@ If you encounter issues:
 </div>
 
 <div class="quick-start-box">
-  <h3>🚀 Quick Actions</h3>
+  <h3><i data-lucide="zap"></i> Quick Actions</h3>
   <div class="quick-start-grid">
     <div class="quick-start-item">
       <a href="http://localhost:3000/login">Login to Platform</a>
@@ -335,8 +355,20 @@ If you encounter issues:
 </div>
 
 <div class="nav-buttons">
-  <a href="/ai-chatbot-entrpise-kit/" class="nav-button">← Back to Home</a>
-  <a href="/ai-chatbot-entrpise-kit/docs/providers" class="nav-button">Add Providers →</a>
+  <a href="/ai-chatbot-entrpise-kit/" class="nav-button">
+    <i data-lucide="arrow-left"></i>
+    Back to Home
+  </a>
+  <a href="/ai-chatbot-entrpise-kit/docs/providers" class="nav-button">
+    Add Providers
+    <i data-lucide="arrow-right"></i>
+  </a>
 </div>
 
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+  });
+</script>

@@ -10,24 +10,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
   
   <body>
     <header class="header">
       <div class="header-content">
-        <a href="{{ '/' | relative_url }}" class="logo">Enterprise AI Chatbot</a>
+        <a href="{{ '/' | relative_url }}" class="logo">
+          <i data-lucide="bot" class="logo-icon"></i>
+          Enterprise AI Chatbot
+        </a>
         
         <nav class="nav" id="nav-menu">
-          <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
-          <a href="{{ '/docs/getting-started' | relative_url }}" {% if page.url contains '/docs/' %}class="active"{% endif %}>Documentation</a>
-          <a href="{{ '/enterprise' | relative_url }}" {% if page.url contains '/enterprise' %}class="active"{% endif %}>Enterprise</a>
+          <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>
+            <i data-lucide="home"></i>
+            Home
+          </a>
+          <a href="{{ '/docs/getting-started' | relative_url }}" {% if page.url contains '/docs/' %}class="active"{% endif %}>
+            <i data-lucide="book-open"></i>
+            Documentation
+          </a>
+          <a href="{{ '/enterprise' | relative_url }}" {% if page.url contains '/enterprise' %}class="active"{% endif %}>
+            <i data-lucide="building-2"></i>
+            Enterprise
+          </a>
           <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="github-link" target="_blank">
-            ⭐ GitHub
+            <i data-lucide="github"></i>
+            GitHub
           </a>
         </nav>
         
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <i data-lucide="menu"></i>
+        </button>
       </div>
     </header>
     
@@ -43,7 +59,7 @@
           <h3>Platform</h3>
           <ul>
             <li><a href="{{ '/docs/getting-started' | relative_url }}">Getting Started</a></li>
-            <li><a href="{{ '/docs/providers' | relative_url }}">Add Providers</a></li>
+            <li><a href="{{ '/docs/providers' | relative_url }}">AI Providers</a></li>
             <li><a href="{{ '/docs/customization' | relative_url }}">Customization</a></li>
             <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit">GitHub Repository</a></li>
           </ul>
@@ -53,39 +69,42 @@
           <h3>Enterprise</h3>
           <ul>
             <li><a href="{{ '/enterprise' | relative_url }}">Enterprise Solutions</a></li>
-            <li><a href="#contact">Contact Sales</a></li>
-            <li><a href="#support">Enterprise Support</a></li>
-            <li><a href="#security">Security & Compliance</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-section">
-          <h3>Company</h3>
-          <ul>
-            <li><a href="https://penguininternational.com">Penguin International</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="{{ '/enterprise' | relative_url }}#contact">Contact Sales</a></li>
+            <li><a href="{{ '/enterprise' | relative_url }}#support">Enterprise Support</a></li>
+            <li><a href="{{ '/enterprise' | relative_url }}#security">Security & Compliance</a></li>
           </ul>
         </div>
         
         <div class="footer-section">
           <h3>Resources</h3>
           <ul>
-            <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/wiki">Wiki</a></li>
+            <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/wiki">Documentation</a></li>
             <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/discussions">Community</a></li>
             <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/issues">Support</a></li>
-            <li><a href="#changelog">Changelog</a></li>
+            <li><a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/releases">Changelog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Sponsor</h3>
+          <ul>
+            <li><a href="https://penguininternational.com">Penguin International</a></li>
+            <li><a href="#about">About the Project</a></li>
+            <li><a href="#contributing">Contributing</a></li>
+            <li><a href="#license">License</a></li>
           </ul>
         </div>
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2025 Penguin International. Built with ❤️ for enterprise AI adoption.</p>
+        <p>&copy; 2025 Sponsored by <strong>Penguin International</strong>. Open source project actively maintained for the community.</p>
       </div>
     </footer>
     
     <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+      
       function toggleMobileMenu() {
         const nav = document.getElementById('nav-menu');
         nav.classList.toggle('active');
@@ -113,6 +132,11 @@
             });
           }
         });
+      });
+      
+      // Re-initialize icons after dynamic content loads
+      document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
       });
     </script>
   </body>

@@ -4,298 +4,7 @@ title: "Enterprise Solutions"
 description: "Custom enterprise AI chatbot solutions with enhanced security, compliance, and dedicated support"
 ---
 
-<style>
-  :root {
-    --bg-primary: #0f0f23;
-    --bg-secondary: #1a1a2e;
-    --bg-accent: #16213e;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-yellow: #f59e0b;
-    --accent-red: #ef4444;
-    --accent-purple: #8b5cf6;
-    --border-color: #334155;
-  }
-  
-  body {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-  }
-  
-  .hero-enterprise {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-accent) 100%);
-    padding: 4rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .hero-enterprise h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .hero-enterprise p {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 2rem;
-  }
-  
-  .enterprise-features {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-  }
-  
-  .feature-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-  
-  .feature-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-blue);
-  }
-  
-  .feature-icon {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-  }
-  
-  .feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-  }
-  
-  .feature-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-  }
-  
-  .feature-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .feature-list li {
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-  
-  .feature-list li:before {
-    content: "✓";
-    color: var(--accent-green);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-  }
-  
-  .pricing-section {
-    background: var(--bg-accent);
-    padding: 4rem 2rem;
-    text-align: center;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .pricing-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    position: relative;
-  }
-  
-  .pricing-card.featured {
-    border-color: var(--accent-blue);
-    transform: scale(1.05);
-  }
-  
-  .pricing-card.featured::before {
-    content: "Most Popular";
-    background: var(--accent-blue);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .pricing-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-  }
-  
-  .pricing-card .price {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--accent-blue);
-    margin-bottom: 1rem;
-  }
-  
-  .contact-section {
-    padding: 4rem 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .contact-form {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 3rem;
-    margin: 2rem 0;
-  }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    font-weight: 500;
-  }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--bg-accent);
-    color: var(--text-primary);
-    font-size: 1rem;
-  }
-  
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-blue);
-  }
-  
-  .form-group textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-  
-  .submit-button {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    width: 100%;
-  }
-  
-  .submit-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-  }
-  
-  .contact-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-  }
-  
-  .contact-item {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-  }
-  
-  .contact-item-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .security-badges {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 3rem 0;
-    flex-wrap: wrap;
-  }
-  
-  .security-badge {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-  
-  @media (max-width: 768px) {
-    .hero-enterprise h1 {
-      font-size: 2rem;
-    }
-    .pricing-card.featured {
-      transform: none;
-    }
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<div class="hero-enterprise">
+<div class="hero">
   <h1>Enterprise Solutions</h1>
   <p>Tailored AI chatbot platform with enhanced security, compliance features, and dedicated support for large organizations. Let us customize, maintain, and scale your AI infrastructure.</p>
 </div>
@@ -306,7 +15,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
   
   <div class="feature-grid">
     <div class="feature-card">
-      <div class="feature-icon">🔒</div>
+      <div class="feature-icon">
+        <i data-lucide="shield-check"></i>
+      </div>
       <h3>Enhanced Security</h3>
       <p>Advanced security features for enterprise environments:</p>
       <ul class="feature-list">
@@ -320,7 +31,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
     </div>
     
     <div class="feature-card">
-      <div class="feature-icon">📋</div>
+      <div class="feature-icon">
+        <i data-lucide="clipboard-check"></i>
+      </div>
       <h3>Compliance & Governance</h3>
       <p>Meet your organization's compliance requirements:</p>
       <ul class="feature-list">
@@ -334,7 +47,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
     </div>
     
     <div class="feature-card">
-      <div class="feature-icon">🏗️</div>
+      <div class="feature-icon">
+        <i data-lucide="wrench"></i>
+      </div>
       <h3>Custom Development</h3>
       <p>Tailored features for your specific needs:</p>
       <ul class="feature-list">
@@ -348,7 +63,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
     </div>
     
     <div class="feature-card">
-      <div class="feature-icon">🚀</div>
+      <div class="feature-icon">
+        <i data-lucide="server"></i>
+      </div>
       <h3>Deployment & Infrastructure</h3>
       <p>Professional deployment and infrastructure management:</p>
       <ul class="feature-list">
@@ -362,7 +79,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
     </div>
     
     <div class="feature-card">
-      <div class="feature-icon">📞</div>
+      <div class="feature-icon">
+        <i data-lucide="headphones"></i>
+      </div>
       <h3>Premium Support</h3>
       <p>Dedicated support for your team:</p>
       <ul class="feature-list">
@@ -376,7 +95,9 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
     </div>
     
     <div class="feature-card">
-      <div class="feature-icon">📊</div>
+      <div class="feature-icon">
+        <i data-lucide="bar-chart-3"></i>
+      </div>
       <h3>Advanced Analytics</h3>
       <p>Deep insights into your AI usage:</p>
       <ul class="feature-list">
@@ -511,25 +232,34 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
         </select>
       </div>
       
-      <button type="submit" class="submit-button">Get Enterprise Quote</button>
+      <button type="submit" class="submit-button">
+        <i data-lucide="send"></i>
+        Get Enterprise Quote
+      </button>
     </form>
   </div>
   
   <div class="contact-info">
     <div class="contact-item">
-      <div class="contact-item-icon">📧</div>
+      <div class="contact-item-icon">
+        <i data-lucide="mail"></i>
+      </div>
       <h3>Email</h3>
-      <p>enterprise@penguininternational.com</p>
+      <p>info@penguin-international.com</p>
     </div>
     
     <div class="contact-item">
-      <div class="contact-item-icon">💬</div>
+      <div class="contact-item-icon">
+        <i data-lucide="calendar"></i>
+      </div>
       <h3>Schedule Call</h3>
       <p>Book a demo meeting</p>
     </div>
     
     <div class="contact-item">
-      <div class="contact-item-icon">📞</div>
+      <div class="contact-item-icon">
+        <i data-lucide="phone"></i>
+      </div>
       <h3>Phone</h3>
       <p>+91-XXXX-XXXXXX</p>
     </div>
@@ -537,16 +267,20 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
   
   <div class="security-badges">
     <div class="security-badge">
-      🔒 SOC 2 Type II<br>Compliant
+      <i data-lucide="shield-check"></i>
+      <br>SOC 2 Type II<br>Compliant
     </div>
     <div class="security-badge">
-      🛡️ GDPR<br>Compliant
+      <i data-lucide="shield"></i>
+      <br>GDPR<br>Compliant
     </div>
     <div class="security-badge">
-      🏥 HIPAA<br>Ready
+      <i data-lucide="heart-pulse"></i>
+      <br>HIPAA<br>Ready
     </div>
     <div class="security-badge">
-      🌍 Global<br>Data Centers
+      <i data-lucide="globe"></i>
+      <br>Global<br>Data Centers
     </div>
   </div>
 </div>
@@ -555,37 +289,289 @@ description: "Custom enterprise AI chatbot solutions with enhanced security, com
 
 ### Proven Track Record
 
-**Penguin International** has been building enterprise software solutions for organizations across industries. Our team brings deep expertise in:
+**Penguin International** sponsors and actively maintains this open-source project to contribute to the community. Our team brings deep expertise in:
 
-- **AI/ML Implementation** - Successfully deployed AI solutions for Fortune 500 companies
+- **AI/ML Implementation** - Successfully deployed AI solutions for organizations across industries
 - **Enterprise Security** - Built systems handling sensitive data for healthcare and financial services
-- **Scalable Architecture** - Designed platforms serving millions of users globally
+- **Scalable Architecture** - Designed platforms serving thousands of users globally
 - **Compliance Expertise** - Helped organizations meet SOC 2, HIPAA, and GDPR requirements
 
 ### Enterprise Success Stories
 
-> *"The Enterprise AI Chatbot Platform transformed how our 2,000+ employees access AI tools. The centralized cost control and user management saved us 60% on AI expenses while improving productivity."*
-> 
+> _"The Enterprise AI Chatbot Platform transformed how our 2,000+ employees access AI tools. The centralized cost control and user management saved us 60% on AI expenses while improving productivity."_
+>
 > **— CTO, Global Manufacturing Company**
 
-> *"The compliance features and audit trails were exactly what we needed for our healthcare organization. The team's support during implementation was exceptional."*
-> 
+> _"The compliance features and audit trails were exactly what we needed for our healthcare organization. The team's support during implementation was exceptional."_
+>
 > **— IT Director, Healthcare System**
 
 ### Our Commitment
 
-- **🎯 Business Focused** - We understand enterprise needs and challenges
-- **🚀 Rapid Deployment** - Get up and running in weeks, not months
-- **🔧 Ongoing Support** - Dedicated team for maintenance and updates
-- **📈 Continuous Innovation** - Regular feature updates and new AI provider integrations
+- **<i data-lucide="target" style="width: 20px; height: 20px; color: var(--accent-blue); vertical-align: middle;"></i> Business Focused** - We understand enterprise needs and challenges
+- **<i data-lucide="rocket" style="width: 20px; height: 20px; color: var(--accent-blue); vertical-align: middle;"></i> Rapid Deployment** - Get up and running in weeks, not months
+- **<i data-lucide="wrench" style="width: 20px; height: 20px; color: var(--accent-blue); vertical-align: middle;"></i> Ongoing Support** - Dedicated team for maintenance and updates
+- **<i data-lucide="trending-up" style="width: 20px; height: 20px; color: var(--accent-blue); vertical-align: middle;"></i> Continuous Innovation** - Regular feature updates and new AI provider integrations
 
 ---
 
-<div style="text-align: center; background: var(--bg-secondary); padding: 3rem; border-radius: 12px; margin: 3rem 0;">
+<div style="text-align: center; background: var(--bg-secondary); padding: 3rem; border-radius: 12px; margin: 3rem 0; border: 1px solid var(--border-color);">
   <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Ready to Get Started?</h3>
   <p style="color: var(--text-secondary); margin-bottom: 2rem;">Join leading organizations who trust us with their AI infrastructure.</p>
   <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-    <a href="#contact-form" style="background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">Contact Enterprise Team</a>
-    <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" style="background: transparent; border: 2px solid var(--accent-blue); color: var(--accent-blue); padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">View Open Source</a>
+    <a href="#contact-form" class="cta-button">
+      <i data-lucide="phone"></i>
+      Contact Enterprise Team
+    </a>
+    <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="cta-button" style="background: transparent; border: 2px solid var(--accent-blue); color: var(--accent-blue);">
+      <i data-lucide="github"></i>
+      View Open Source
+    </a>
   </div>
 </div>
+
+<style>
+.enterprise-features {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.feature-list li:before {
+  content: "✓";
+  color: var(--accent-green);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.pricing-section {
+  background: var(--bg-secondary);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.pricing-card.featured {
+  border-color: var(--accent-blue);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.featured::before {
+  content: "Most Popular";
+  background: var(--accent-blue);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.pricing-card .price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent-blue);
+  margin-bottom: 1rem;
+}
+
+.contact-section {
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-form {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 3rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.submit-button i {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.contact-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-item-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem;
+  background: var(--accent-blue);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.contact-item-icon i {
+  width: 24px;
+  height: 24px;
+}
+
+.security-badges {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.security-badge {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.security-badge i {
+  width: 24px;
+  height: 24px;
+  color: var(--accent-blue);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .pricing-card.featured {
+    transform: none;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-form {
+    padding: 2rem;
+  }
+  .contact-form > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    lucide.createIcons();
+  });
+</script>

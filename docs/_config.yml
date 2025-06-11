@@ -14,7 +14,7 @@ plugins:
 # Site configuration
 author:
   name: "Penguin International"
-  email: "enterprise@penguininternational.com"
+  email: "info@penguin-international.com"
 
 # Navigation
 header_pages:
