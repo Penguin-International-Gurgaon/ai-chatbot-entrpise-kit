@@ -708,6 +708,7 @@ export async function getUserTokenUsage(): Promise<
     email: string;
     lastActive: Date;
     totalTokensUsed: number;
+    is_admin: boolean;
     modelUsage: {
       modelId: string;
       totalBudget: number;
@@ -720,12 +721,13 @@ export async function getUserTokenUsage(): Promise<
       .select({
         id: user.id,
         email: user.email,
+        is_admin: user.is_admin,
         lastActive: sql`MAX(${tokenBudget.updatedAt})`.as('lastActive'),
         totalTokensUsed: sql`SUM(${tokenBudget.usedBudget})`.as('totalTokensUsed'),
       })
       .from(user)
       .leftJoin(tokenBudget, eq(user.id, tokenBudget.userId))
-      .groupBy(user.id, user.email);
+      .groupBy(user.id, user.email, user.is_admin); 
 
     const result = await Promise.all(
       rawUserTokenUsage.map(async (u) => {
@@ -741,6 +743,7 @@ export async function getUserTokenUsage(): Promise<
         return {
           id: u.id,
           email: u.email,
+          is_admin: !!u.is_admin,
           lastActive: new Date(u.lastActive as string),
           totalTokensUsed: Number(u.totalTokensUsed),
           modelUsage: modelUsage.map((m) => ({

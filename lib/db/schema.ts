@@ -207,6 +207,7 @@ export interface UserTokenUsage {
   email: string
   lastActive: Date | null
   totalTokensUsed: number
+  is_admin: boolean;
   modelUsage: {
     modelId: string
     totalBudget: number
