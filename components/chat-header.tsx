@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react"
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar"
 import { ModelSelector } from "@/components/model-selector"
-import { VisibilitySelector } from "@/components/visibility-selector"
+import { VisibilitySelector, VisibilityType } from "@/components/visibility-selector"
 import { TokenBudgetDisplay } from "@/components/token-budget-display"
 import { getTokenBudgetForModel } from "@/app/(chat)/actions"
 
@@ -24,7 +24,7 @@ export function ChatHeader({
   id: string
   title?: string
   selectedChatModel: string
-  selectedVisibilityType: string
+  selectedVisibilityType: VisibilityType
   isReadonly: boolean
   onChatModelChange?: (model: string) => void
   onVisibilityChange?: (visibility: string) => void
@@ -67,12 +67,13 @@ export function ChatHeader({
         )}
 
         <div className="flex flex-wrap items-center gap-3">
-          <ModelSelector selectedModelId={selectedChatModel} onChange={onChatModelChange} />
+          <ModelSelector selectedModelId={selectedChatModel} onModelSelect={onChatModelChange} />
           {!isReadonly && (
-            <VisibilitySelector
-              selectedVisibilityType={selectedVisibilityType}
-              onChange={onVisibilityChange}
-            />
+          <VisibilitySelector
+            chatId={id}
+            selectedVisibilityType={selectedVisibilityType}
+            onVisibilityChange={onVisibilityChange}
+          />
           )}
         </div>
       </div>

@@ -18,11 +18,11 @@ import { CheckCircleFillIcon, ChevronDownIcon } from './icons';
 export function ModelSelector({
   selectedModelId,
   className,
-  onChange,
+  onModelSelect,
 }: {
   selectedModelId: string;
-  onChange?: (modelId: string) => void
-} & React.ComponentProps<typeof Button>) {
+  onModelSelect?: (modelId: string) => void
+} & Omit<React.ComponentProps<typeof Button>, 'onClick'>) {
   const [open, setOpen] = useState(false);
   const [optimisticModelId, setOptimisticModelId] =
     useOptimistic(selectedModelId);
@@ -74,8 +74,8 @@ export function ModelSelector({
             startTransition(() => {
               setOptimisticModelId(id);
               saveChatModelAsCookie(id);
-              if (onChange) {
-                onChange(id)
+              if (onModelSelect) {
+                onModelSelect(id)
               }
             });
           }}
@@ -89,8 +89,8 @@ export function ModelSelector({
             startTransition(() => {
               setOptimisticModelId(id);
               saveChatModelAsCookie(id);
-              if (onChange) {
-                onChange(id)
+              if (onModelSelect) {
+                onModelSelect(id)
               }
             });
           }}
