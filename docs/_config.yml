@@ -1,0 +1,33 @@
+title: "Enterprise AI Chatbot Platform"
+description: "Centralized AI access with cost controls, user management, and enterprise security"
+url: "https://penguin-international-gurgaon.github.io"
+baseurl: "/ai-chatbot-entrpise-kit"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Site configuration
+author:
+  name: "Penguin International"
+  email: "enterprise@penguininternational.com"
+
+# Navigation
+header_pages:
+  - index.md
+  - docs/getting-started.md
+  - docs/providers.md
+  - docs/customization.md
+  - enterprise.md
+
+# Exclude files
+exclude:
+  - node_modules/
+  - package.json
+  - pnpm-lock.yaml
+  - README.md
