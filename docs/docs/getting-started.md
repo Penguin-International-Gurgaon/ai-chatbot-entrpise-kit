@@ -4,174 +4,6 @@ title: "Getting Started"
 description: "Complete guide to setting up and deploying your Enterprise AI Chatbot Platform"
 ---
 
-<style>
-  :root {
-    --bg-primary: #0f0f23;
-    --bg-secondary: #1a1a2e;
-    --bg-accent: #16213e;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-yellow: #f59e0b;
-    --accent-red: #ef4444;
-    --border-color: #334155;
-  }
-  
-  body {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-  }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  h1, h2, h3 {
-    color: var(--text-primary);
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.5rem;
-  }
-  
-  .info-box {
-    background: var(--bg-accent);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-blue);
-  }
-  
-  .warning-box {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid var(--accent-red);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-red);
-  }
-  
-  .success-box {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid var(--accent-green);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-green);
-  }
-  
-  pre {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
-    overflow-x: auto;
-    font-size: 0.9rem;
-  }
-  
-  code {
-    background: var(--bg-secondary);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-  }
-  
-  .step-number {
-    background: var(--accent-blue);
-    color: white;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-right: 1rem;
-  }
-  
-  .requirements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-  
-  .requirement-item {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-  }
-  
-  .requirement-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  th, td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  th {
-    background: var(--bg-accent);
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-  
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-  }
-  
-  .nav-button {
-    background: var(--accent-blue);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s;
-  }
-  
-  .nav-button:hover {
-    background: #2563eb;
-  }
-</style>
-
 <div class="container">
 
 # Getting Started
@@ -457,9 +289,50 @@ If you encounter issues:
 <strong>🎉 Congratulations!</strong> Your Enterprise AI Chatbot Platform is now running. Here's what to do next:
 </div>
 
-1. **[Add AI Providers](/ai-chatbot-entrpise-kit/docs/providers)** - Learn how to add and configure additional AI providers
-2. **[Customization](/ai-chatbot-entrpise-kit/docs/customization)** - Brand the platform for your organization using config.toml
-3. **[Enterprise Features](/ai-chatbot-entrpise-kit/enterprise)** - Explore advanced enterprise capabilities and support
+<div class="doc-navigation">
+  <h3>📚 Documentation Quick Access</h3>
+  <div class="doc-nav-grid">
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/docs/providers">
+        <span class="nav-icon">🔌</span>
+        <strong>Add Providers</strong>
+        <div class="nav-desc">Configure OpenAI, Anthropic, xAI, and more</div>
+      </a>
+    </div>
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/docs/customization">
+        <span class="nav-icon">🎨</span>
+        <strong>Customization</strong>
+        <div class="nav-desc">Brand your platform with config.toml</div>
+      </a>
+    </div>
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/enterprise">
+        <span class="nav-icon">🏢</span>
+        <strong>Enterprise</strong>
+        <div class="nav-desc">Advanced features and support</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="quick-start-box">
+  <h3>🚀 Quick Actions</h3>
+  <div class="quick-start-grid">
+    <div class="quick-start-item">
+      <a href="http://localhost:3000/login">Login to Platform</a>
+    </div>
+    <div class="quick-start-item">
+      <a href="http://localhost:3000/admin">Admin Dashboard</a>
+    </div>
+    <div class="quick-start-item">
+      <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit/issues">Get Support</a>
+    </div>
+    <div class="quick-start-item">
+      <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit">View Source</a>
+    </div>
+  </div>
+</div>
 
 <div class="nav-buttons">
   <a href="/ai-chatbot-entrpise-kit/" class="nav-button">← Back to Home</a>

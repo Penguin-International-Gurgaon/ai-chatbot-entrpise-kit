@@ -4,206 +4,6 @@ title: "Adding AI Providers & Models"
 description: "Learn how to add new AI providers and models to your Enterprise AI Chatbot Platform"
 ---
 
-<style>
-  :root {
-    --bg-primary: #0f0f23;
-    --bg-secondary: #1a1a2e;
-    --bg-accent: #16213e;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-yellow: #f59e0b;
-    --accent-red: #ef4444;
-    --accent-purple: #8b5cf6;
-    --border-color: #334155;
-  }
-  
-  body {
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    color: var(--text-primary);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.6;
-  }
-  
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-  
-  h1, h2, h3 {
-    color: var(--text-primary);
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 0.5rem;
-  }
-  
-  .provider-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 2rem 0;
-    transition: border-color 0.2s;
-  }
-  
-  .provider-card:hover {
-    border-color: var(--accent-blue);
-  }
-  
-  .provider-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .provider-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-right: 1rem;
-  }
-  
-  .openai { background: linear-gradient(135deg, #00d4aa, #00b894); }
-  .anthropic { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
-  .xai { background: linear-gradient(135deg, #0984e3, #6c5ce7); }
-  .custom { background: linear-gradient(135deg, var(--accent-yellow), #fd79a8); }
-  
-  .info-box {
-    background: var(--bg-accent);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-blue);
-  }
-  
-  .warning-box {
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid var(--accent-red);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-red);
-  }
-  
-  .success-box {
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid var(--accent-green);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--accent-green);
-  }
-  
-  pre {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1rem;
-    overflow-x: auto;
-    font-size: 0.9rem;
-  }
-  
-  code {
-    background: var(--bg-secondary);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-  }
-  
-  .step-number {
-    background: var(--accent-blue);
-    color: white;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-right: 1rem;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-    background: var(--bg-secondary);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  th, td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-  }
-  
-  th {
-    background: var(--bg-accent);
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-  
-  .model-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-  
-  .model-item {
-    background: var(--bg-accent);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
-  }
-  
-  .nav-button {
-    background: var(--accent-blue);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background-color 0.2s;
-  }
-  
-  .nav-button:hover {
-    background: #2563eb;
-  }
-</style>
-
 <div class="container">
 
 # Adding AI Providers & Models
@@ -642,6 +442,33 @@ export const modelPricing = {
 
 <div class="success-box">
 <strong>✅ Provider Added Successfully!</strong> Your new AI provider should now be available in the model selector. Users can start using it immediately based on their token budgets.
+</div>
+
+<div class="doc-navigation">
+  <h3>📚 Related Documentation</h3>
+  <div class="doc-nav-grid">
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/docs/getting-started">
+        <span class="nav-icon">🚀</span>
+        <strong>Getting Started</strong>
+        <div class="nav-desc">Initial setup and installation</div>
+      </a>
+    </div>
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/docs/customization">
+        <span class="nav-icon">🎨</span>
+        <strong>Customization</strong>
+        <div class="nav-desc">Brand your platform</div>
+      </a>
+    </div>
+    <div class="doc-nav-item">
+      <a href="/ai-chatbot-entrpise-kit/enterprise">
+        <span class="nav-icon">🏢</span>
+        <strong>Enterprise</strong>
+        <div class="nav-desc">Advanced features</div>
+      </a>
+    </div>
+  </div>
 </div>
 
 <div class="nav-buttons">
