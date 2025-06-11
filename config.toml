@@ -1,0 +1,25 @@
+[layout]
+title = "PenguinChat"
+description = "PenguinChat Application, LLM for everyone!"
+
+[greeting]
+title = "Welcome to PenguinChat !"
+subtitle = "How can I help you today?"
+
+[theme]
+LIGHT_THEME_COLOR = "hsl(0 0% 100%)"
+DARK_THEME_COLOR = "hsl(240deg 10% 3.92%)"
+
+[header]
+favicon_text = "🐧"
+custom_header_note = "LLM for Everyone"
+
+[[suggested_actions]]
+title = "What are the advantages"
+label = "of using Next.js?"
+action = "What are the advantages of using Next.js?"
+
+[[suggested_actions]]
+title = "Write code to"
+label = "demonstrate djikstra's algorithm"
+action = "Write code to demonstrate djikstra's algorithm"
