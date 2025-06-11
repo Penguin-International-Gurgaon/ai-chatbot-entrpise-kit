@@ -10,7 +10,10 @@ const config = getAppConfig();
 
 export const metadata: Metadata = {
   title: config.layout.title,
-  description: config.layout.description
+  description: config.layout.description,
+  icons: {
+    icon: `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${config.header.favicon}</text></svg>`
+  }
 };
 
 export const viewport = {
@@ -29,25 +32,6 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
 });
 
-const LIGHT_THEME_COLOR = config.theme.LIGHT_THEME_COLOR;
-const DARK_THEME_COLOR = config.theme.DARK_THEME_COLOR;
-const THEME_COLOR_SCRIPT = `\
-(function() {
-  var html = document.documentElement;
-  var meta = document.querySelector('meta[name="theme-color"]');
-  if (!meta) {
-    meta = document.createElement('meta');
-    meta.setAttribute('name', 'theme-color');
-    document.head.appendChild(meta);
-  }
-  function updateThemeColor() {
-    var isDark = html.classList.contains('dark');
-    meta.setAttribute('content', isDark ? '${DARK_THEME_COLOR}' : '${LIGHT_THEME_COLOR}');
-  }
-  var observer = new MutationObserver(updateThemeColor);
-  observer.observe(html, { attributes: true, attributeFilter: ['class'] });
-  updateThemeColor();
-})();`;
 
 export default async function RootLayout({
   children,
@@ -63,17 +47,17 @@ export default async function RootLayout({
       // https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
       suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable}`}
+      style={{
+        '--theme-light': config.theme.LIGHT_THEME_COLOR,
+        '--theme-dark': config.theme.DARK_THEME_COLOR
+      } as React.CSSProperties}
     >
       <head>
-        {Object.entries(config.header).map(([key, value]) => (
-          <meta key={key} name={key} content={value} />
-        ))}
-        <script
-        //TODO : Check this !
-          dangerouslySetInnerHTML={{
-            __html: THEME_COLOR_SCRIPT,
-          }}
-        />
+        {Object.entries(config.header)
+          .filter(([key]) => !['favicon', 'title', 'subtitle'].includes(key))
+          .map(([key, value]) => (
+            <meta key={key} name={key} content={value} />
+          ))}
       </head>
       <body className="antialiased">
         <ThemeProvider

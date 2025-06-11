@@ -7,12 +7,14 @@ title = "Welcome to PenguinChat !"
 subtitle = "How can I help you today?"
 
 [theme]
-LIGHT_THEME_COLOR = "hsl(0 0% 100%)"
+LIGHT_THEME_COLOR = "hsl(147deg, 50%, 47%)"
 DARK_THEME_COLOR = "hsl(240deg 10% 3.92%)"
 
 [header]
-favicon_text = "🐧"
-custom_header_note = "LLM for Everyone"
+favicon = "🐧"
+title = "PenguinChat"
+subtitle = "LLM for Everyone"
+custom_header_note = "LLM for Everyone in your team"
 
 [footer]
 enabled = true
@@ -38,5 +40,5 @@ action = "What are the advantages of using Next.js?"
 
 [[suggested_actions]]
 title = "Write code to"
-label = "demonstrate djikstra's algorithm"
-action = "Write code to demonstrate djikstra's algorithm"
+label = "demonstrate dijkstra's algorithm"
+action = "Write code to demonstrate dijkstra's algorithm"

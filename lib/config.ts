@@ -18,7 +18,11 @@ export interface AppConfig{
         DARK_THEME_COLOR: string;
     };
 
-    header:Record<string, string>;
+    header: {
+        favicon: string;
+        title: string;
+        subtitle: string;
+    } & Record<string, string>;
     footer: {
         enabled: boolean;
         text: string;
