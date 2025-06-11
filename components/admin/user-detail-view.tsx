@@ -208,9 +208,13 @@ function MultiModelTokenForm({
 }) {
   const [tokenAmount, setTokenAmount] = useState("10000")
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [selectedModels, setSelectedModels] = useState<Record<string, boolean>>(
-    models.reduce((acc, model) => ({ ...acc, [model]: false }), {}),
-  )
+    const [selectedModels, setSelectedModels] = useState<Record<string, boolean>>(() => {
+    const initialState: Record<string, boolean> = {}
+    for (const model of models) {
+      initialState[model] = false
+    }
+    return initialState
+  })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -284,7 +288,13 @@ function MultiModelTokenForm({
           type="button"
           variant="outline"
           onClick={() => {
-            setSelectedModels(models.reduce((acc, model) => ({ ...acc, [model]: true }), {}))
+            setSelectedModels(() => {
+              const initialState: Record<string, boolean> = {}
+              for (const model of models) {
+                initialState[model] = false
+              }
+              return initialState
+            })
           }}
           className="flex-1"
         >
@@ -294,7 +304,13 @@ function MultiModelTokenForm({
           type="button"
           variant="outline"
           onClick={() => {
-            setSelectedModels(models.reduce((acc, model) => ({ ...acc, [model]: false }), {}))
+            setSelectedModels(() => {
+              const initialState: Record<string, boolean> = {}
+              for (const model of models) {
+                initialState[model] = false
+              }
+              return initialState
+            })
           }}
           className="flex-1"
         >
