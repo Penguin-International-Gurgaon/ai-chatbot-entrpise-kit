@@ -2,12 +2,12 @@ import {
   customProvider,
   extractReasoningMiddleware,
   wrapLanguageModel,
+  type Provider,
 } from 'ai';
 import { xai } from '@ai-sdk/xai';
 import { isTestEnvironment } from '../constants';
 import { createOpenAI } from '@ai-sdk/openai';
 import { createAnthropic } from '@ai-sdk/anthropic';
-
 import {
   artifactModel,
   chatModel,
@@ -15,7 +15,9 @@ import {
   titleModel,
 } from './models.test';
 
-function createProvider() {
+let _myProvider: Provider | null = null;
+
+function createProvider(): Provider {
   if (isTestEnvironment) {
     return customProvider({
       languageModels: {
@@ -27,23 +29,23 @@ function createProvider() {
     });
   }
 
-  const openaikey = process.env.OPENAI_API_KEY;
-  if (!openaikey) {
+  const openaiKey = process.env.OPENAI_API_KEY;
+  if (!openaiKey) {
     throw new Error('Missing OPENAI_API_KEY in environment variables.');
   }
 
-  const anthropicapikey = process.env.ANTHROPIC_API_KEY;
-  if (!anthropicapikey) {
+  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  if (!anthropicKey) {
     throw new Error('Missing ANTHROPIC_API_KEY in environment variables.');
   }
 
   const openai = createOpenAI({
-    apiKey: openaikey,
+    apiKey: openaiKey,
     compatibility: 'strict',
   });
 
   const anthropic = createAnthropic({
-    apiKey: anthropicapikey,
+    apiKey: anthropicKey,
   });
 
   return customProvider({
@@ -55,8 +57,6 @@ function createProvider() {
       }),
       'title-model': openai.chat('gpt-4.1-mini'),
       'artifact-model': openai.chat('gpt-4.1-mini'),
-
-      // OpenAI models
       'openai-gpt-4.1': openai.chat('gpt-4.1'),
       'openai-gpt-4.1-mini': openai.chat('gpt-4.1-mini'),
       'openai-gpt-4.1-nano': openai.chat('gpt-4.1-nano'),
@@ -66,8 +66,6 @@ function createProvider() {
       'openai-gpt-4o': openai.chat('gpt-4o'),
       'openai-gpt-4o-mini': openai.chat('gpt-4o-mini'),
       'openai-gpt-4.5-preview': openai.chat('gpt-4.5-preview'),
-
-      // Anthropic models
       'claude-3-haiku': anthropic('claude-3-haiku-20240307'),
       'claude-3-7-sonnet': anthropic('claude-3-7-sonnet-20250219'),
     },
@@ -77,7 +75,15 @@ function createProvider() {
   });
 }
 
-// Export a function that lazily initializes the provider
-export const getMyProvider = () => {
-  return createProvider();
-};
+// Export as a lazily evaluated const
+export const myProvider: Provider = new Proxy(
+  {},
+  {
+    get(_target, prop, receiver) {
+      if (!_myProvider) {
+        _myProvider = createProvider();
+      }
+      return Reflect.get(_myProvider as Provider, prop, receiver);
+    },
+  }
+) as Provider;
