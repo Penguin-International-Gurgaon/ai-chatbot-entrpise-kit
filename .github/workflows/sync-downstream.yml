@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ env.PRIVATE_REPO }}
-          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          token: ${{ secrets.LIVE_DEMO_REPO_PAT }}
           path: private-repo
           ref: main # base branch in private repo
 
@@ -43,7 +43,7 @@ jobs:
       - name: Create Pull Request in Private Repo
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          token: ${{ secrets.LIVE_DEMO_REPO_PAT }}
           repository: ${{ env.PRIVATE_REPO }}
           title: "Sync: ${{ github.sha }}"
           body: |
