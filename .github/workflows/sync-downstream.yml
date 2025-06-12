@@ -1,0 +1,48 @@
+name: Sync to Downstream Repo (demo)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-private:
+    runs-on: ubuntu-latest
+
+    env:
+      PRIVATE_REPO: /Penguin-International-Gurgaon/ai-chatbot-live-demo
+      PRIVATE_BRANCH: sync-${{ github.sha }}
+
+    steps:
+      - name: Checkout public repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "OpenSourceBot"
+          git config --global user.email "dhruv166kumar@gmail.com"
+
+      - name: Clone private repo
+        run: |
+          git clone https://x-access-token:${{ secrets.PRIVATE_REPO_PAT }}@github.com/${{ env.PRIVATE_REPO }} private-repo
+          cd private-repo
+          git checkout -b ${{ env.PRIVATE_BRANCH }}
+
+      - name: Copy changes to private repo
+        run: |
+          rsync -av --exclude='.git' ./ ./private-repo/
+          cd private-repo
+          git add .
+          git commit -m "Sync from upstream commit ${{ github.sha }}" || echo "No changes to commit"
+          git push origin ${{ env.PRIVATE_BRANCH }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          repository: ${{ env.PRIVATE_REPO }}
+          title: "Sync from public repo - ${{ github.sha }}"
+          head: ${{ env.PRIVATE_BRANCH }}
+          base: main
+          body: |
+            This PR syncs changes from the public upstream repository commit ${{ github.sha }}.
