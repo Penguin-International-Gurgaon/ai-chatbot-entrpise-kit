@@ -49,12 +49,12 @@ jobs:
             echo "skip_pr=false" >> $GITHUB_ENV
           fi
 
-      - name: Create Pull Request in downstream Repo
+      - name: Create Pull Request in Private Repo
         if: env.skip_pr == 'false'
         uses: octokit/request-action@v2.x
         with:
-          route: POST /repos/${{ env.PRIVATE_REPO }}/pulls
-          parameters: |
+          routez: |
+            POST /repos/${{ env.PRIVATE_REPO }}/pulls
             {
               "title": "Sync: ${{ github.sha }}",
               "head": "${{ env.PRIVATE_BRANCH }}",
