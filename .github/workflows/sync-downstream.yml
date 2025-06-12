@@ -8,14 +8,14 @@ on:
 jobs:
   sync-private:
     runs-on: ubuntu-latest
-
     env:
       PRIVATE_REPO: Penguin-International-Gurgaon/ai-chatbot-live-demo
       PRIVATE_BRANCH: sync-${{ github.sha }}
-
     steps:
       - name: Checkout public repo (source)
         uses: actions/checkout@v4
+        with:
+          path: source-repo
 
       - name: Checkout private repo (target)
         uses: actions/checkout@v4
@@ -23,30 +23,44 @@ jobs:
           repository: ${{ env.PRIVATE_REPO }}
           token: ${{ secrets.LIVE_DEMO_REPO_PAT }}
           path: private-repo
-          ref: main # base branch in private repo
+          ref: main
 
-      - name: Copy files to private repo
-        run: |
-          rsync -av --delete --exclude=".git" ./ ./private-repo/
-
-      - name: Commit & push to new branch in private repo
+      - name: Create sync branch in private repo
         run: |
           cd private-repo
           git config user.name "sync-bot"
           git config user.email "bot@penguin-international.com"
-
           git checkout -b ${{ env.PRIVATE_BRANCH }}
+
+      - name: Sync files (preserve private repo changes)
+        run: |
+          rsync -av --exclude='.git' source-repo/ private-repo/
+
+      - name: Commit and push changes
+        run: |
+          cd private-repo
           git add .
-          git commit -m "Sync from public repo at ${{ github.sha }}" || echo "Nothing to commit"
-          git push origin ${{ env.PRIVATE_BRANCH }}
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "skip_pr=true" >> $GITHUB_ENV
+          else
+            git commit -m "Sync from public repo at ${{ github.sha }}"
+            git push origin ${{ env.PRIVATE_BRANCH }}
+            echo "skip_pr=false" >> $GITHUB_ENV
+          fi
 
       - name: Create Pull Request in Private Repo
-        uses: peter-evans/create-pull-request@v6
+        if: env.skip_pr == 'false'
+        uses: octokit/request-action@v2.x
         with:
-          token: ${{ secrets.LIVE_DEMO_REPO_PAT }}
-          repository: ${{ env.PRIVATE_REPO }}
+          route: POST /repos/${{ env.PRIVATE_REPO }}/pulls
           title: "Sync: ${{ github.sha }}"
           body: |
             Auto-generated PR from upstream commit ${{ github.sha }}.
-          base: main
+
+            **Changes:** Synced from public repository
+            **Commit:** ${{ github.sha }}
           head: ${{ env.PRIVATE_BRANCH }}
+          base: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.LIVE_DEMO_REPO_PAT }}
