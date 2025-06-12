@@ -10,39 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PRIVATE_REPO: /Penguin-International-Gurgaon/ai-chatbot-live-demo
+      PRIVATE_REPO: Penguin-International-Gurgaon/ai-chatbot-live-demo
       PRIVATE_BRANCH: sync-${{ github.sha }}
 
     steps:
-      - name: Checkout public repo
+      - name: Checkout public repo (source)
         uses: actions/checkout@v4
 
-      - name: Set up Git
-        run: |
-          git config --global user.name "OpenSourceBot"
-          git config --global user.email "dhruv166kumar@gmail.com"
+      - name: Checkout private repo (target)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PRIVATE_REPO }}
+          token: ${{ secrets.PRIVATE_REPO_PAT }}
+          path: private-repo
+          ref: main # base branch in private repo
 
-      - name: Clone private repo
+      - name: Copy files to private repo
         run: |
-          git clone https://x-access-token:${{ secrets.PRIVATE_REPO_PAT }}@github.com/${{ env.PRIVATE_REPO }} private-repo
+          rsync -av --delete --exclude=".git" ./ ./private-repo/
+
+      - name: Commit & push to new branch in private repo
+        run: |
           cd private-repo
+          git config user.name "sync-bot"
+          git config user.email "bot@penguin-international.com"
+
           git checkout -b ${{ env.PRIVATE_BRANCH }}
-
-      - name: Copy changes to private repo
-        run: |
-          rsync -av --exclude='.git' ./ ./private-repo/
-          cd private-repo
           git add .
-          git commit -m "Sync from upstream commit ${{ github.sha }}" || echo "No changes to commit"
+          git commit -m "Sync from public repo at ${{ github.sha }}" || echo "Nothing to commit"
           git push origin ${{ env.PRIVATE_BRANCH }}
 
-      - name: Create Pull Request
+      - name: Create Pull Request in Private Repo
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.PRIVATE_REPO_PAT }}
           repository: ${{ env.PRIVATE_REPO }}
-          title: "Sync from public repo - ${{ github.sha }}"
-          head: ${{ env.PRIVATE_BRANCH }}
-          base: main
+          title: "Sync: ${{ github.sha }}"
           body: |
-            This PR syncs changes from the public upstream repository commit ${{ github.sha }}.
+            Auto-generated PR from upstream commit ${{ github.sha }}.
+          base: main
+          head: ${{ env.PRIVATE_BRANCH }}
