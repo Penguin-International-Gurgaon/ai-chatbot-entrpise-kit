@@ -17,7 +17,7 @@ jobs:
         with:
           path: source-repo
 
-      - name: Checkout private repo (target)
+      - name: Checkout Downstream repo (target)
         uses: actions/checkout@v4
         with:
           repository: ${{ env.PRIVATE_REPO }}
@@ -25,7 +25,7 @@ jobs:
           path: private-repo
           ref: main
 
-      - name: Create sync branch in private repo
+      - name: Create sync branch in Downstream repo
         run: |
           cd private-repo
           git config user.name "sync-bot"
@@ -49,18 +49,17 @@ jobs:
             echo "skip_pr=false" >> $GITHUB_ENV
           fi
 
-      - name: Create Pull Request in Private Repo
+      - name: Create Pull Request in downstream Repo
         if: env.skip_pr == 'false'
         uses: octokit/request-action@v2.x
         with:
           route: POST /repos/${{ env.PRIVATE_REPO }}/pulls
-          title: "Sync: ${{ github.sha }}"
-          body: |
-            Auto-generated PR from upstream commit ${{ github.sha }}.
-
-            **Changes:** Synced from public repository
-            **Commit:** ${{ github.sha }}
-          head: ${{ env.PRIVATE_BRANCH }}
-          base: main
+          parameters: |
+            {
+              "title": "Sync: ${{ github.sha }}",
+              "head": "${{ env.PRIVATE_BRANCH }}",
+              "base": "main",
+              "body": "Auto-generated PR from upstream commit ${{ github.sha }}.\n\n**Changes:** Synced from public repository\n**Commit:** ${{ github.sha }}"
+            }
         env:
           GITHUB_TOKEN: ${{ secrets.LIVE_DEMO_REPO_PAT }}
