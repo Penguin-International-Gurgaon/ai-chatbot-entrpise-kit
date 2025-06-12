@@ -53,7 +53,7 @@ jobs:
         if: env.skip_pr == 'false'
         uses: octokit/request-action@v2.x
         with:
-          routez: |
+          route: |
             POST /repos/${{ env.PRIVATE_REPO }}/pulls
             {
               "title": "Sync: ${{ github.sha }}",
