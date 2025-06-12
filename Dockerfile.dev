@@ -9,7 +9,12 @@ RUN npm install -g pnpm@9.12.3
 # Copy package files first for better caching
 COPY package.json pnpm-lock.yaml ./
 
+# Install required build tools and Python for native modules
+RUN apk add --no-cache python3 py3-pip make g++ \
+    && ln -sf python3 /usr/bin/python
+
 # Install dependencies
+RUN pnpm config set registry https://registry.npmmirror.com
 RUN pnpm install
 
 # Copy source code
