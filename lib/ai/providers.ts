@@ -15,14 +15,24 @@ import {
   titleModel,
 } from './models.test';
 
+const openaikey = process.env.OPENAI_API_KEY;
+if (!openaikey) {
+  throw new Error ('Missing OPENAI_API_KEY in environment variables.')
+}
 
 const openai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
+  apiKey: openaikey,
   compatibility: 'strict',
 });
 
+
+const anthropicapikey = process.env.OPENAI_API_KEY;
+if (!anthropicapikey) {
+  throw new Error ('Missing ANTHROPIC_API_KEY in environment variables.')
+}
+
 const anthropic = createAnthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY!,
+  apiKey: anthropicapikey,
 });
 
 export const myProvider = isTestEnvironment

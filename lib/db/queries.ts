@@ -632,73 +632,105 @@ export async function updateTokenRequestStatus({
 
 import { sql } from "drizzle-orm"
 
-export async function getTokenUsageData() {
+
+type TokenUsageDatum = {
+  date: string;
+  modelId: string;
+  userId: string;
+  tokensUsed: number;
+};
+
+type TokenUsageData = {
+  timeSeriesData: TokenUsageDatum[];
+  availableModels: string[];
+  availableUsers: { id: string; email: string }[];
+  topUsers: { userId: string; email: string; tokensUsed: number }[];
+};
+
+export async function getTokenUsageData(): Promise<TokenUsageData> {
   try {
-    // Get time series data for token usage
-    const timeSeriesData = await db
+    const rawTimeSeriesData = await db
       .select({
-        date: sql`DATE_TRUNC('day', ${tokenBudget.updatedAt})::date`,
+        date: sql`DATE_TRUNC('day', ${tokenBudget.updatedAt})::date`.as('date'),
         modelId: tokenBudget.modelId,
         userId: tokenBudget.userId,
-        tokensUsed: sql`SUM(${tokenBudget.usedBudget})`,
+        tokensUsed: sql`SUM(${tokenBudget.usedBudget})`.as('tokensUsed'),
       })
       .from(tokenBudget)
       .groupBy(sql`DATE_TRUNC('day', ${tokenBudget.updatedAt})::date`, tokenBudget.modelId, tokenBudget.userId)
-      .orderBy(sql`DATE_TRUNC('day', ${tokenBudget.updatedAt})::date`)
+      .orderBy(sql`DATE_TRUNC('day', ${tokenBudget.updatedAt})::date`);
 
-    // Get available models
-    const models = await db.select({ modelId: tokenBudget.modelId }).from(tokenBudget).groupBy(tokenBudget.modelId)
+    const timeSeriesData = rawTimeSeriesData.map((d) => ({
+      date: String(d.date),
+      modelId: String(d.modelId),
+      userId: String(d.userId),
+      tokensUsed: Number(d.tokensUsed),
+    }));
 
-    // Get available users
-    const users = await db
-      .select({
-        id: user.id,
-        email: user.email,
-      })
-      .from(user)
+    const models = await db.select({ modelId: tokenBudget.modelId }).from(tokenBudget).groupBy(tokenBudget.modelId);
+    const availableModels = models.map((m) => String(m.modelId));
 
-    // Get top users by token usage
-    const topUsers = await db
+    const availableUsers = await db.select({ id: user.id, email: user.email }).from(user);
+
+    const rawTopUsers = await db
       .select({
         userId: tokenBudget.userId,
         email: user.email,
-        tokensUsed: sql`SUM(${tokenBudget.usedBudget})`,
+        tokensUsed: sql`SUM(${tokenBudget.usedBudget})`.as('tokensUsed'),
       })
       .from(tokenBudget)
       .innerJoin(user, eq(tokenBudget.userId, user.id))
       .groupBy(tokenBudget.userId, user.email)
-      .orderBy(sql`SUM(${tokenBudget.usedBudget})`, "desc")
-      .limit(10)
+      .orderBy(desc(sql`SUM(${tokenBudget.usedBudget})`))
+      .limit(10);
+
+    const topUsers = rawTopUsers.map((u) => ({
+      userId: String(u.userId),
+      email: String(u.email),
+      tokensUsed: Number(u.tokensUsed),
+    }));
 
     return {
       timeSeriesData,
-      availableModels: models.map((m) => m.modelId),
-      availableUsers: users,
+      availableModels,
+      availableUsers,
       topUsers,
-    }
+    };
   } catch (error) {
-    console.error("Failed to get token usage data from database")
-    throw error
+    console.error("Failed to get token usage data from database");
+    throw error;
   }
 }
 
-export async function getUserTokenUsage() {
+export async function getUserTokenUsage(): Promise<
+  {
+    id: string;
+    email: string;
+    lastActive: Date;
+    totalTokensUsed: number;
+    is_admin: boolean;
+    modelUsage: {
+      modelId: string;
+      totalBudget: number;
+      usedBudget: number;
+    }[];
+  }[]
+> {
   try {
-    // Get user token usage data
-    const userTokenUsage = await db
+    const rawUserTokenUsage = await db
       .select({
         id: user.id,
         email: user.email,
-        lastActive: sql`MAX(${tokenBudget.updatedAt})`,
-        totalTokensUsed: sql`SUM(${tokenBudget.usedBudget})`,
+        is_admin: user.is_admin,
+        lastActive: sql`MAX(${tokenBudget.updatedAt})`.as('lastActive'),
+        totalTokensUsed: sql`SUM(${tokenBudget.usedBudget})`.as('totalTokensUsed'),
       })
       .from(user)
       .leftJoin(tokenBudget, eq(user.id, tokenBudget.userId))
-      .groupBy(user.id, user.email)
+      .groupBy(user.id, user.email, user.is_admin); 
 
-    // For each user, get their model usage
     const result = await Promise.all(
-      userTokenUsage.map(async (userData) => {
+      rawUserTokenUsage.map(async (u) => {
         const modelUsage = await db
           .select({
             modelId: tokenBudget.modelId,
@@ -706,18 +738,26 @@ export async function getUserTokenUsage() {
             usedBudget: tokenBudget.usedBudget,
           })
           .from(tokenBudget)
-          .where(eq(tokenBudget.userId, userData.id))
+          .where(eq(tokenBudget.userId, u.id));
 
         return {
-          ...userData,
-          modelUsage,
-        }
-      }),
-    )
+          id: u.id,
+          email: u.email,
+          is_admin: !!u.is_admin,
+          lastActive: new Date(u.lastActive as string),
+          totalTokensUsed: Number(u.totalTokensUsed),
+          modelUsage: modelUsage.map((m) => ({
+            modelId: String(m.modelId),
+            totalBudget: Number(m.totalBudget),
+            usedBudget: Number(m.usedBudget),
+          })),
+        };
+      })
+    );
 
-    return result
+    return result;
   } catch (error) {
-    console.error("Failed to get user token usage from database")
-    throw error
+    console.error("Failed to get user token usage from database");
+    throw error;
   }
 }

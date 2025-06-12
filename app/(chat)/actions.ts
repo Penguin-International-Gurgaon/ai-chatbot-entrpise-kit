@@ -92,8 +92,6 @@ export async function updateTokenUsageForChat({
   }
 
   const tokensUsed = calculateTokens(prompt, response)
-  console.debug("calculateTokens")
-  console.debug(tokensUsed)
 
   await updateTokenUsage({
     userId: session.user.id,

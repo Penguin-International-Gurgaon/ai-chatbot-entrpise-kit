@@ -65,7 +65,7 @@ export function AdminDashboard({
       </header>
 
       {/* Tabs */}
-      <Tabs defaultValue="users" value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as TabKey)}>
         <TabsList
           className="flex flex-wrap gap-2 justify-start sticky top-[80px] z-10 bg-background py-2 border-b"
           aria-label="Admin Dashboard Tabs"

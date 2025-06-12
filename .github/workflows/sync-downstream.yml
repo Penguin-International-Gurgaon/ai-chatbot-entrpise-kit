@@ -1,0 +1,65 @@
+name: Sync to Downstream Repo (demo)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-private:
+    runs-on: ubuntu-latest
+    env:
+      PRIVATE_REPO: Penguin-International-Gurgaon/ai-chatbot-live-demo
+      PRIVATE_BRANCH: sync-${{ github.sha }}
+    steps:
+      - name: Checkout public repo (source)
+        uses: actions/checkout@v4
+        with:
+          path: source-repo
+
+      - name: Checkout Downstream repo (target)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PRIVATE_REPO }}
+          token: ${{ secrets.LIVE_DEMO_REPO_PAT }}
+          path: private-repo
+          ref: main
+
+      - name: Create sync branch in Downstream repo
+        run: |
+          cd private-repo
+          git config user.name "sync-bot"
+          git config user.email "bot@penguin-international.com"
+          git checkout -b ${{ env.PRIVATE_BRANCH }}
+
+      - name: Sync files (preserve private repo changes)
+        run: |
+          rsync -av --exclude='.git' source-repo/ private-repo/
+
+      - name: Commit and push changes
+        run: |
+          cd private-repo
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "skip_pr=true" >> $GITHUB_ENV
+          else
+            git commit -m "Sync from public repo at ${{ github.sha }}"
+            git push origin ${{ env.PRIVATE_BRANCH }}
+            echo "skip_pr=false" >> $GITHUB_ENV
+          fi
+
+      - name: Create Pull Request in Private Repo
+        if: env.skip_pr == 'false'
+        uses: octokit/request-action@v2.x
+        with:
+          route: |
+            POST /repos/${{ env.PRIVATE_REPO }}/pulls
+              {
+                "title": "Sync: ${{ github.sha }}",
+                "head": "sync-${{ github.sha }}",
+                "base": "main",
+                "body": "Auto-generated PR from upstream commit ${{ github.sha }}.\n\n**Changes:** Synced from public repository\n**Commit:** ${{ github.sha }}"
+              }
+        env:
+          GITHUB_TOKEN: ${{ secrets.LIVE_DEMO_REPO_PAT }}
