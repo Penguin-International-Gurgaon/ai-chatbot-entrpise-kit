@@ -57,7 +57,7 @@ jobs:
             POST /repos/${{ env.PRIVATE_REPO }}/pulls
             {
               "title": "Sync: ${{ github.sha }}",
-              "head": "${{ env.PRIVATE_BRANCH }}",
+              "head": "sync-${{ github.sha }}",
               "base": "main",
               "body": "Auto-generated PR from upstream commit ${{ github.sha }}.\n\n**Changes:** Synced from public repository\n**Commit:** ${{ github.sha }}"
             }
