@@ -16,7 +16,7 @@
             <div class="hero">
                 <h1>Open Source AI SDK Kit</h1>
                 <p>Empower your team with centralized AI access and comprehensive usage controls. An open source platform that gives every team member access to major AI providers while maintaining complete administrative oversight.</p>
-                <a href="docs/getting-started.html" class="cta-button">
+                <a href="docs/getting-started.html" class="cta-button" style="color: white;">>
                     <i data-lucide="rocket"></i>
                     Get Started
                 </a>

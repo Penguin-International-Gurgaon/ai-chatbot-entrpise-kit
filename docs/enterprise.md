@@ -150,7 +150,7 @@
                 <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Ready to Get Started?</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Join leading organizations who trust us with their AI infrastructure.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#contact-form" class="cta-button">
+                    <a href="#contact-form" class="cta-button" style="color: white;">
                         <i data-lucide="phone"></i>
                         Contact Enterprise Team
                     </a>
