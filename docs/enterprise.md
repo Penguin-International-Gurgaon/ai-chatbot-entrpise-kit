@@ -142,32 +142,6 @@
                         </button>
                     </form>
                 </div>
-
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="mail"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>info@penguin-international.com</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="calendar"></i>
-                        </div>
-                        <h3>Schedule Call</h3>
-                        <p>Book a demo meeting</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="phone"></i>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>+91-XXXX-XXXXXX</p>
-                    </div>
-                </div>
             </div>
 
             <hr>
