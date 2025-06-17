@@ -28,4 +28,4 @@ ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Start development server with hot reload
-CMD ["pnpm", "dev"]
+CMD ["sh", "-c", "pnpm migrate && pnpm dev"]
