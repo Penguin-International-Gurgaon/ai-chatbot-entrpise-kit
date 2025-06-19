@@ -3,7 +3,7 @@
 import type { UIMessage } from 'ai';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { memo, useState } from 'react';
+import { memo, useState, useEffect } from 'react';
 import type { Vote } from '@/lib/db/schema';
 import { DocumentToolCall, DocumentToolResult } from './document';
 import { PencilEditIcon, SparklesIcon } from './icons';
@@ -244,6 +244,21 @@ export const PreviewMessage = memo(
 
 export const ThinkingMessage = () => {
   const role = 'assistant';
+  const [thinkingText, setThinkingText] = useState('Thinking...');
+
+  useEffect(() => {
+    const loadThinkingText = async () => {
+      try {
+        const { getThinkingText } = await import('@/lib/greetings');
+        const text = await getThinkingText();
+        setThinkingText(text + '...');
+      } catch (error) {
+        console.warn('Failed to generate thinking text:', error);
+      }
+    };
+
+    loadThinkingText();
+  }, []);
 
   return (
     <motion.div
@@ -267,7 +282,7 @@ export const ThinkingMessage = () => {
 
         <div className="flex flex-col gap-2 w-full">
           <div className="flex flex-col gap-4 text-muted-foreground">
-            Hmm...
+            {thinkingText}
           </div>
         </div>
       </div>
