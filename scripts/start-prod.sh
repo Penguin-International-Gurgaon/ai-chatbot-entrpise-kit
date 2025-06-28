@@ -13,6 +13,11 @@ if [ ! -f .env ]; then
     exit 1
 fi
 
+# Load environment variables
+set -a
+source .env
+set +a
+
 # Validate required environment variables
 required_vars=("AUTH_SECRET" "POSTGRES_PASSWORD" "OPENAI_API_KEY" "ADMIN_EMAIL")
 for var in "${required_vars[@]}"; do
@@ -30,9 +35,9 @@ docker-compose -f docker-compose.prod.yml down
 echo "Building and starting production environment..."
 docker-compose -f docker-compose.prod.yml up --build -d
 
-# Wait for database to be ready
-echo "Waiting for database to be ready..."
-sleep 20
+# Wait for services to be healthy
+echo "Waiting for services to be ready..."
+docker-compose -f docker-compose.prod.yml exec app sh -c 'while ! curl -f http://localhost:3000/api/health >/dev/null 2>&1; do sleep 5; done'
 
 # Run database migrations
 echo "Running database migrations..."
@@ -41,7 +46,7 @@ docker-compose -f docker-compose.prod.yml exec app npx tsx lib/db/migrate.ts
 # Create admin user if ADMIN_EMAIL is set
 if [ ! -z "$ADMIN_EMAIL" ]; then
     echo "Creating admin user..."
-    docker-compose -f docker-compose.prod.yml exec app npx tsx scripts/set-admin.ts --email "$ADMIN_EMAIL"
+    docker-compose -f docker-compose.prod.yml exec app sh -c 'npx tsx scripts/set-admin.ts --email="$ADMIN_EMAIL" --admin=true --pgurl="$POSTGRES_URL"'
 fi
 
 echo "Production environment is ready!"
