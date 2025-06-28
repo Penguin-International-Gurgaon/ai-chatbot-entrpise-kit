@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Production app service
@@ -21,6 +21,7 @@ services:
       - XAI_API_KEY=${XAI_API_KEY}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - AUTH_TRUST_HOST=${AUTH_TRUST_HOST}
     depends_on:
       db:
         condition: service_healthy
