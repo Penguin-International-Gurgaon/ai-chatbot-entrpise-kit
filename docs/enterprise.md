@@ -142,32 +142,6 @@
                         </button>
                     </form>
                 </div>
-
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="mail"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>info@penguin-international.com</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="calendar"></i>
-                        </div>
-                        <h3>Schedule Call</h3>
-                        <p>Book a demo meeting</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">
-                            <i data-lucide="phone"></i>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>+91-XXXX-XXXXXX</p>
-                    </div>
-                </div>
             </div>
 
             <hr>
@@ -176,7 +150,7 @@
                 <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Ready to Get Started?</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">Join leading organizations who trust us with their AI infrastructure.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="#contact-form" class="cta-button">
+                    <a href="#contact-form" class="cta-button" style="color: white;">
                         <i data-lucide="phone"></i>
                         Contact Enterprise Team
                     </a>

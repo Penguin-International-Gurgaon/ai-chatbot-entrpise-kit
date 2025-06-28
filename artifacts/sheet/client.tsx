@@ -107,7 +107,7 @@ export const sheetArtifact = new Artifact<'sheet', Metadata>({
         appendMessage({
           role: 'user',
           content:
-            'Can you please analyze and visualize the data by creating a new code artifact in python?',
+            'Can you please analyze and visualize the data by creating a new code artifact?',
         });
       },
     },

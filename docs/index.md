@@ -16,7 +16,7 @@
             <div class="hero">
                 <h1>Open Source AI SDK Kit</h1>
                 <p>Empower your team with centralized AI access and comprehensive usage controls. An open source platform that gives every team member access to major AI providers while maintaining complete administrative oversight.</p>
-                <a href="docs/getting-started.html" class="cta-button">
+                <a href="docs/getting-started.html" class="cta-button" style="color: white;">>
                     <i data-lucide="rocket"></i>
                     Get Started
                 </a>
@@ -155,12 +155,21 @@ pnpm dev</code></pre>
 
             <div style="text-align: center; padding: 2rem; background: var(--bg-accent); margin-top: 3rem; border-radius: 12px; border: 1px solid var(--border-color);">
                 <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Open Source & Community Driven</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">This project is sponsored by <strong>Penguin International</strong> and actively maintained by our team to contribute to the open source community.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    This project is sponsored by
+                    <strong>
+                        <a href="https://penguin-international.com" target="_blank" style="color: var(--text-primary); text-decoration: underline;">
+                            Penguin International
+                        </a>
+                    </strong>
+                    and actively maintained by our team to contribute to the open source community.
+                </p>
                 <a href="https://github.com/Penguin-International-Gurgaon/ai-chatbot-entrpise-kit" class="cta-button" style="background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green); margin-left: 1rem;">
                     <i data-lucide="github"></i>
                     View on GitHub
                 </a>
             </div>
+
         </div>
     </main>
 
