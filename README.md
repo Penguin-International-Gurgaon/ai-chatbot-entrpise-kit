@@ -122,7 +122,7 @@ pnpm db:seed
 ### 4. Create Admin (required only first time)
 
 ```bash
-pnpm run set-admin --email admin@yourcompany.com
+pnpm run set-admin --email admin@yourcompany.com --admin=True --pgurl= yourPGurl
 ```
 
 ### 5. Start Application
@@ -130,6 +130,16 @@ pnpm run set-admin --email admin@yourcompany.com
 ```bash
 pnpm dev
 ```
+
+### or
+
+Simply start with dockers by using following scripts -
+
+```bash
+./scripts/start-dev.sh
+```
+
+This will boot up all the required components for the application.
 
 Access your app at [http://localhost:3000](http://localhost:3000)
 

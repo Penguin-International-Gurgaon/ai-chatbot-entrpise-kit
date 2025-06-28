@@ -25,8 +25,10 @@ if (!email || typeof is_admin !== 'boolean' || !pgurl) {
 
 // ---- DB Setup ----
 
+
 const client = postgres(pgurl, {
-    ssl: process.env.NODE_ENV === 'production' ? 'require' : false,
+  //This scripts runs only locally, ideally.
+    ssl: false, 
   });
 const db = drizzle(client);
 

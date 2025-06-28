@@ -196,100 +196,6 @@ export const myProvider = customProvider({
   apiKey: process.env.GOOGLE_API_KEY,
   baseURL: 'https://generativelanguage.googleapis.com/v1beta',
 });</code></pre>
-
-                    <h2>Testing New Providers</h2>
-
-                    <h3><span class="step-number">1</span> Create Test Script</h3>
-                    <p>Create a simple test script to verify your provider works:</p>
-                    <pre><code>// scripts/test-provider.ts
-import { generateText } from 'ai';
-import { myProvider } from '../lib/ai/providers';
-
-async function testProvider() {
-  try {
-    const result = await generateText({
-      model: myProvider.languageModel('google-gemini-pro'),
-      prompt: 'Hello, world!',
-    });
-    
-    console.log('✅ Provider test successful:', result.text);
-  } catch (error) {
-    console.error('❌ Provider test failed:', error);
-  }
-}
-
-testProvider();</code></pre>
-
-                    <p>Run the test:</p>
-                    <pre><code>npx tsx scripts/test-provider.ts</code></pre>
-
-                    <h2>Model Capabilities</h2>
-
-                    <h3>Supported Features by Provider Type</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Description</th>
-                                <th>Implementation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Chat</td>
-                                <td>Conversational AI capabilities</td>
-                                <td><code>provider.languageModel('model-name')</code></td>
-                            </tr>
-                            <tr>
-                                <td>Vision</td>
-                                <td>Image understanding capabilities</td>
-                                <td><code>provider.visionModel('model-name')</code></td>
-                            </tr>
-                            <tr>
-                                <td>Function Calling</td>
-                                <td>Tool use and function execution</td>
-                                <td>Supported via AI SDK tools interface</td>
-                            </tr>
-                            <tr>
-                                <td>Image Generation</td>
-                                <td>Creating images from text prompts</td>
-                                <td><code>provider.imageModel('model-name')</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <h2>Token Budget Configuration</h2>
-
-                    <h3>Setting Up Budgets for New Models</h3>
-                    <p>When adding new models, you'll need to configure token budgets in the admin dashboard:</p>
-                    <ol>
-                        <li><strong>Go to Admin Dashboard</strong> → <strong>Token Analytics</strong></li>
-                        <li><strong>Add New Model</strong> with appropriate cost per token</li>
-                        <li><strong>Set Default Budgets</strong> for different user roles</li>
-                        <li><strong>Configure Rate Limits</strong> if needed</li>
-                    </ol>
-
-                    <h3>Model Pricing Configuration</h3>
-                    <p>Add pricing information for accurate budget tracking:</p>
-                    <pre><code>// lib/utils/token-calculator.ts
-export const modelPricing = {
-  // Existing models...
-  'openai-gpt-4.1': {
-    inputCost: 0.03,  // per 1K tokens
-    outputCost: 0.04, // per 1K tokens
-  },
-  
-  // Add new models
-  'google-gemini-pro': {
-    inputCost: 0.001,
-    outputCost: 0.002,
-  },
-  'mistral-large': {
-    inputCost: 0.004,
-    outputCost: 0.012,
-  },
-};</code></pre>
-
                     <h2>Troubleshooting</h2>
 
                     <div class="warning-box">
@@ -351,8 +257,6 @@ export const modelPricing = {
                     <h3>User Experience</h3>
                     <ul>
                         <li><strong>Provide clear model descriptions</strong> to help users choose</li>
-                        <li><strong>Set appropriate default models</strong> for different use cases</li>
-                        <li><strong>Show estimated costs</strong> before expensive operations</li>
                         <li><strong>Implement graceful fallbacks</strong> when models are unavailable</li>
                     </ul>
 
@@ -360,6 +264,7 @@ export const modelPricing = {
                         <i data-lucide="check-circle"></i>
                         <div>
                             <strong>Provider Added Successfully!</strong> Your new AI provider should now be available in the model selector. Users can start using it immediately based on their token budgets.
+                            <strong>At end - Do not forgot to update Docker and related file to pass on new environment variables.
                         </div>
                     </div>
 

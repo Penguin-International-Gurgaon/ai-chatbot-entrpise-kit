@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { AdminDashboard } from "@/components/admin/admin-dashboard";
 import {
   getAllUsers,
