@@ -25,30 +25,34 @@ if (!email || typeof is_admin !== 'boolean' || !pgurl) {
 
 // ---- DB Setup ----
 
-
 const client = postgres(pgurl, {
-  //This scripts runs only locally, ideally.
-    ssl: false, 
-  });
+  ssl: false,
+});
 const db = drizzle(client);
 
 // ---- Admin Status Update ----
 
 async function setAdminStatus() {
-  const result = await db
-    .update(user)
-    .set({ is_admin })
-    .where(eq(user.email, email))
-    .returning();
+  try {
+    const result = await db
+      .update(user)
+      .set({ is_admin })
+      .where(eq(user.email, email))
+      .returning();
 
-  if (result.length === 0) {
-    console.warn(`⚠️ No user found with email: ${email}`);
-  } else {
-    console.log(`✅ Updated admin status for ${email} to ${is_admin}`);
+    if (result.length === 0) {
+      console.warn(`⚠️ No user found with email: ${email}`);
+      process.exit(0);
+    } else {
+      console.log(`✅ Updated admin status for ${email} to ${is_admin}`);
+      process.exit(0);
+    }
+  } catch (err) {
+    console.error('❌ Error updating user:', err);
+    process.exit(1);
+  } finally {
+    await client.end({ timeout: 1 }); // clean shutdown
   }
 }
 
-setAdminStatus().catch((err) => {
-  console.error('❌ Error updating user:', err);
-  process.exit(1);
-});
+setAdminStatus();
