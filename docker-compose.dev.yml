@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Development app service
@@ -14,6 +14,7 @@ services:
       - POSTGRES_URL=postgresql://postgres:password@db:5432/ai_chatbot_dev
       - NEXTAUTH_URL=http://localhost:3000
       - AUTH_SECRET=dev-super-secret-auth-key-change-in-production
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
     volumes:
       - .:/app
       - /app/node_modules

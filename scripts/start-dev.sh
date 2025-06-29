@@ -28,6 +28,12 @@ sleep 10
 echo "Running database migrations..."
 docker-compose -f docker-compose.dev.yml exec app pnpm db:migrate
 
+# Create admin user if ADMIN_EMAIL is set
+if [ ! -z "$ADMIN_EMAIL" ]; then
+    echo "Creating admin user..."
+    docker-compose -f docker-compose.prod.yml exec app sh -c 'npx tsx scripts/set-admin.ts --email="$ADMIN_EMAIL" --admin=true --pgurl="$POSTGRES_URL"'
+fi
+
 echo "Development environment is ready!"
 echo "Application: http://localhost:3000"
 echo "Database: localhost:5432"
