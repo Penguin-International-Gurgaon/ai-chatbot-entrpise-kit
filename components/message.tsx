@@ -249,8 +249,8 @@ export const ThinkingMessage = () => {
   useEffect(() => {
     const loadThinkingText = async () => {
       try {
-        const { getThinkingText } = await import('@/lib/greetings');
-        const text = await getThinkingText();
+        const { generateThinkingText } = await import('@/lib/greetings');
+        const text = await generateThinkingText();
         setThinkingText(text + '...');
       } catch (error) {
         console.warn('Failed to generate thinking text:', error);
