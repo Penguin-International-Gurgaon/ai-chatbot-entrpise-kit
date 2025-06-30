@@ -2,22 +2,24 @@
 
 <div align="center">
   <img alt="Enterprise-ready AI chatbot with admin controls and token management" src="app/(chat)/demo-image.png" width="600">
-  <h2>🚀 Centralized AI Access for Enterprise</h2>
+  <h2>Centralized AI Access for Enterprise</h2>
   <p><strong>Built by Penguin International • Designed for Organizations</strong></p>
 </div>
 
 <p align="center">
-  Give your entire organization access to advanced AI models while maintaining complete cost control and administrative oversight. Built with Next.js, featuring comprehensive token budgeting, user management, and enterprise-grade security.
+  Provide your entire organization/team with access to advanced AI models with ease and full-control.
 </p>
 
 <p align="center">
-  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/"><strong>📖 Documentation</strong></a> ·
-  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/docs/getting-started"><strong>🚀 Quick Start</strong></a> ·
-  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/enterprise"><strong>🏢 Enterprise</strong></a> ·
-  <a href="#-features"><strong>✨ Features</strong></a>
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/"><strong>Documentation</strong></a> ·
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/docs/getting-started"><strong>Quick Start</strong></a> ·
+  <a href="https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/enterprise"><strong>Enterprise</strong></a> ·
+  <a href="#features"><strong>Features</strong></a>
 </p>
 
 <div align="center">
+
+---
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
@@ -28,20 +30,20 @@
 
 ---
 
-## 🎯 Why This Platform?
+## Why Choose This Platform?
 
-This platform provides enterprises with a **ready-to-deploy and extend** solution that offers:
+This platform provides enterprises with a ready-to-deploy and extendable solution offering:
 
 - **Centralized API Management** for all LLM providers
-- **Way to Cost Controls** like token budgeting and usage tracking
-- **Team Collaboration** via multi-user support and role-based access
-- **Usage Analytics** for AI consumption monitoring
+- **Comprehensive Cost Controls**, including token budgeting and usage tracking
+- **Team Collaboration** through multi-user support and role-based access
+- **Detailed Usage Analytics** for AI consumption monitoring
 
-It is the perfect solution for teams aiming to scale AI adoption with governance, visibility, and control.
+It is ideal for teams seeking to scale AI adoption with governance, visibility, and control.
 
 ---
 
-## ✨ Features
+## Features
 
 ### Admin Dashboard
 
@@ -51,29 +53,29 @@ It is the perfect solution for teams aiming to scale AI adoption with governance
 
 ### Token Management
 
-- Assign per-user
-- Monitor consumption in real-time
-- Handle budget requests seamlessly
+- Assign tokens per user
+- Real-time consumption monitoring
+- Efficient handling of budget requests
 
 ### Security & Compliance
 
-- Role-based access controls
+- Robust role-based access controls
 
 ### LLM Provider Support
 
-- Extendable to any LLM provider via Vercel AI SDK package
+- Easily extendable to any LLM provider via Vercel AI SDK
 
 ---
 
 ## Deployment
 
-This platform can be deployed on various infrastructures:
+This platform can be deployed across various infrastructures:
 
 ### Supported Environments
 
 - **Cloud Providers**: AWS, Azure, GCP
-- **On-Premise**: Secure, internal environments
-- **Hybrid Deployments**: Cloud + On-Premise mix
+- **On-Premises**: Secure internal environments
+- **Hybrid Deployments**: Combination of Cloud and On-Premises
 
 > Contact us for tailored deployment scripts, Docker support, and CI/CD pipeline guidance.
 
@@ -86,7 +88,7 @@ This platform can be deployed on various infrastructures:
 - Node.js (v18+)
 - `pnpm` package manager
 - PostgreSQL database
-- API keys for selected LLMs
+- API keys for chosen LLM providers
 
 ### 1. Clone and Install
 
@@ -96,7 +98,7 @@ cd ai-chatbot-entrpise-kit
 pnpm install
 ```
 
-### 2. Setup Environment
+### 2. Environment Setup
 
 ```bash
 cp .env.example .env.local
@@ -112,17 +114,17 @@ ANTHROPIC_API_KEY=your-anthropic-key
 ADMIN_EMAIL=admin@yourcompany.com
 ```
 
-### 3. Run Migrations and Seeds
+### 3. Database Migrations and Seeding
 
 ```bash
 pnpm db:migrate
 pnpm db:seed
 ```
 
-### 4. Create Admin (required only first time)
+### 4. Create Admin User (initial setup only)
 
 ```bash
-pnpm run set-admin --email admin@yourcompany.com --admin=True --pgurl= yourPGurl
+pnpm run set-admin --email admin@yourcompany.com --admin=True --pgurl=yourPGurl
 ```
 
 ### 5. Start Application
@@ -131,88 +133,86 @@ pnpm run set-admin --email admin@yourcompany.com --admin=True --pgurl= yourPGurl
 pnpm dev
 ```
 
-### or
-
-Simply start with dockers by using following scripts -
+### Or start with Docker:
 
 ```bash
 ./scripts/start-dev.sh
 ```
 
-This will boot up all the required components for the application.
+This will initialize all necessary application components.
 
 Access your app at [http://localhost:3000](http://localhost:3000)
 
-> **📖 For detailed documentation, visit [our documentation website](https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/)**
+> For detailed documentation, visit [our documentation website](https://penguin-international-gurgaon.github.io/ai-chatbot-entrpise-kit/).
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── app/
-│   ├── (auth)/          # Auth logic
+│   ├── (auth)/          # Authentication logic
 │   ├── (chat)/          # Chat functionality
 │   └── admin/           # Admin interface
 ├── components/
-│   ├── admin/           # Admin UI
-│   ├── chat/            # Chat UI
+│   ├── admin/           # Admin UI components
+│   ├── chat/            # Chat UI components
 │   └── ui/              # Shared components
 ├── lib/
 │   ├── ai/              # Model integrations
-│   ├── db/              # ORM and queries
-│   └── middleware/      # Middleware for auth/budgets
+│   ├── db/              # ORM and database queries
+│   └── middleware/      # Middleware for authentication and budgeting
 └── hooks/               # Custom React hooks
 ```
 
 ---
 
-## 🔧 Customization & Configuration
+## Customization & Configuration
 
-### Add a New LLM Provider
+### Adding a New LLM Provider
 
 1. Update `lib/ai/providers.ts`
-2. Add models to `lib/ai/models.tsx`
+2. Add models in `lib/ai/models.tsx`
 3. Reflect changes in the Admin panel
 
-### Configure Token Budgets
+### Configuring Token Budgets
 
 - Set global/user limits via admin
-- Enable user-driven request system
-- Configure email/notification hooks
+- Enable user-driven request systems
+- Configure email/notification integrations
 
 ### Branding & Theming
 
-- Update `tailwind.config.ts`
+- Modify `tailwind.config.ts`
 - Replace assets in `public/`
-- Tweak layouts via `app/layout.tsx`
+- Adjust layouts via `app/layout.tsx`
 
 ---
 
-## 📊 Admin Dashboard
+## Admin Dashboard
 
-Visit `/admin` as an admin to manage:
+Visit `/admin` as an administrator to manage:
 
 ### Users
 
-- View all users
+- View user list
 - Assign budgets and roles
-- Remove or restrict access
+- Manage user access
 
 ### Analytics
 
-- View usage across users/models
-- Track costs by team/model
+- Monitor usage across users and models
+- Track costs by team and model
 
 ### Budgeting
 
-- Monitor live token usage
+- View live token usage
 - Approve token requests
-- Set alerts for thresholds
+- Configure usage alerts
 
 ---
 
-## 🛠️ API Reference
+## API Reference
 
 ### Chat API
 
@@ -238,44 +238,44 @@ GET /api/admin/analytics/costs
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-We encourage contributions to improve this platform:
+We welcome contributions to enhance this platform:
 
 ### How to Contribute
 
-1. Fork this repo
+1. Fork the repository
 2. Create a feature branch
 3. Implement your changes
 4. Submit a pull request
 
-### Dev Guidelines
+### Development Guidelines
 
-- Type-safe code (TypeScript)
-- Unit and integration tests
-- Follow security best practices
-- Keep documentation updated
+- Write type-safe code (TypeScript)
+- Include unit and integration tests
+- Adhere to security best practices
+- Keep documentation current
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the **Apache License** by Penguin International, Gurugram, India. See [LICENSE](LICENSE) for details.
 
-Built upon the powerful [Vercel AI SDK](https://sdk.vercel.ai) — thanks to the Vercel team for the inspiration and solid foundation.
+Built upon the powerful [Vercel AI SDK](https://sdk.vercel.ai)—special thanks to the Vercel team for their solid foundation.
 
 ---
 
-## 🌟 Support & Community
+## Support & Community
 
-- **GitHub Issues** – For bug reports or features
-- **GitHub Discussions** – For general Q\&A
-- **Enterprise Support** – Reach out for SLAs and onboarding help
-- **Documentation** – In-code and standalone guides
+- **GitHub Issues** – For bug reports or feature requests
+- **GitHub Discussions** – General Q\&A
+- **Enterprise Support** – Contact us for SLAs and onboarding assistance
+- **Documentation** – Comprehensive in-code and standalone guides
 
 ---
 
 <div align="center">
   <p><strong>Built for Enterprise • Maintained by Penguin International</strong></p>
-  <p>⭐ Star us if this helps your team succeed with AI!</p>
+  <p>Star us if this platform helps your team succeed with AI.</p>
 </div>
